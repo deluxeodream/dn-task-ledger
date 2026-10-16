@@ -1,5 +1,5 @@
 /* ---------- state ---------- */
-function defaults(){return {v:1,setupDone:false,settings:{talisman:30,coinRate:10000},accounts:[],chars:[],classes:CLASSLIST.slice(),cv:1,tasks:defaultTasks(),entries:[]};}
+function defaults(){return {v:1,setupDone:false,settings:{talisman:30,coinRate:10000},coinAuto:{},accounts:[],chars:[],classes:CLASSLIST.slice(),cv:1,tasks:defaultTasks(),entries:[]};}
 function migrate(o){
   var d=defaults();
   if(!o||typeof o!=='object') return d;
@@ -27,6 +27,7 @@ function migrate(o){
     var extra=o.classes.filter(function(c){return CLASSLIST.every(function(x){return x.toLowerCase()!==String(c).toLowerCase();});});
     o.classes=CLASSLIST.concat(extra); o.cv=1;
   }
+  if(!o.coinAuto||typeof o.coinAuto!=='object') o.coinAuto={};
   o.setupDone=!!o.setupDone; o.v=1;
   return o;
 }
