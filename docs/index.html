@@ -567,7 +567,8 @@ function mutate(fn){fn(); syncCoins(); save(); render();}
 
 /* js/aggregation.js */
 /* ---------- aggregation ---------- */
-function goldOf(rewards){return rewards.reduce(function(s,r){return s+(r.item==='Gold'?Number(r.qty)||0:0);},0);}
+function isGoldItem(name){return name==='Gold'||name==='Hero Coin';}
+function goldOf(rewards){return rewards.reduce(function(s,r){return s+(isGoldItem(r.item)?Number(r.qty)||0:0);},0);}
 function aggregate(list){
   var A={clears:0,gold:0,coinGold:0,coins:0,items:{},byTask:{},byChar:{}};
   list.forEach(function(e){
