@@ -1002,8 +1002,8 @@ document.addEventListener('change',function(ev){
       t=taskById(b.dataset.t); c=b.dataset.c;
       if(t.kind==='nm'){var cur=ents(c,t.id)[0]; if(cur&&cur.diff&&v&&diffIndex(t,v)<diffIndex(t,cur.diff)){toast('NM keeps the highest difficulty cleared'); render(); break;}}
       mutate(function(){upsertSingle(c,t,v);}); break;
-    case 'run-diff': e=getEntry(b.dataset.e); t=taskById(e.taskId); mutate(function(){e.diff=v; e.rewards=computeRewards(t,v,e.talisman); e.ts=Date.now(); snap(e,charById(e.charId)||{ign:e.ign,accountId:'',cls:e.cls},t);}); break;
-    case 'run-tal': e=getEntry(b.dataset.e); t=taskById(e.taskId); mutate(function(){e.talisman=b.checked; e.rewards=computeRewards(t,e.diff,e.talisman);}); break;
+    case 'run-diff': e=getEntry(b.dataset.e); t=taskById(e.taskId); mutate(function(){e.diff=v; refreshRewards(e,t,e.talisman); e.ts=Date.now(); snap(e,charById(e.charId)||{ign:e.ign,accountId:'',cls:e.cls},t);}); break;
+    case 'run-tal': e=getEntry(b.dataset.e); t=taskById(e.taskId); mutate(function(){e.talisman=b.checked; refreshRewards(e,t,e.talisman);}); break;
     case 'char-ign': c=charById(b.dataset.id); if(!v.trim()){render();break;} mutate(function(){c.ign=v.trim();}); break;
     case 'char-cls': c=charById(b.dataset.id); mutate(function(){c.cls=ensureClass(v);}); break;
     case 'char-acct': c=charById(b.dataset.id); mutate(function(){c.accountId=v;}); break;
@@ -1016,8 +1016,7 @@ document.addEventListener('change',function(ev){
     case 'rew-item': case 'rew-qty': case 'rew-txt':
       t=taskById(ui.etask); mutate(function(){var d=t.difficulties.find(function(x){return x.name===ui.ediff;}), r=d.rewards[Number(b.dataset.i)];
         if(a==='rew-item') r.item=v.trim()||r.item; else if(a==='rew-qty') r.qty=Number(v)||0; else {if(v.trim())r.qtyText=v.trim(); else delete r.qtyText;}}); break;
-    case 'coin-all': mutate(function(){coinWeek().list.forEach(function(e){setCoin(e,b.checked);});}); toast(b.checked?'All Shiny Hero Coins converted to gold':'Shiny Hero Coins restored'); break;
-    case 'coin-sell': e=getEntry(b.dataset.e); mutate(function(){setCoin(e,b.checked);}); toast(b.checked?'Shiny Hero Coins converted to gold':'Shiny Hero Coins restored'); break;
+    case 'coin-all': mutate(function(){S.coinAuto[WK]=b.checked; coinWeek().list.forEach(function(e){setCoin(e,b.checked);});}); toast(b.checked?'All Shiny Hero Coins converted to gold':'Shiny Hero Coins restored'); break;
     case 'set-coin': mutate(function(){var n=Number(v); S.settings.coinRate=isFinite(n)&&n>=0?Math.round(n):10000;}); break;
     case 'set-tal': mutate(function(){var n=Number(v); S.settings.talisman=isFinite(n)&&n>=0?n:30;}); break;
     case 'imp-rewards': readPicked(b,importRewards); break;
