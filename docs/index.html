@@ -533,7 +533,12 @@ function upsertSingle(cid,t,diff){
   var c=charById(cid), list=ents(cid,t.id), e=list[0];
   if(!diff){ S.entries=S.entries.filter(function(x){return !(x.week===WK&&x.charId===cid&&x.taskId===t.id);}); return; }
   if(!e){e={id:uid(),week:WK,charId:cid,taskId:t.id,diff:'',talisman:false,ts:Date.now(),rewards:[]}; S.entries.push(e);}
-  var keep=!!e.coinSold, kr=e.coinRate; e.diff=diff; e.rewards=computeRewards(t,diff,false); e.ts=Date.now(); snap(e,c,t);
+  e.diff=diff; refreshRewards(e,t,false); e.ts=Date.now(); snap(e,c,t);
+}
+/* Recompute an entry's rewards (floor or talisman changed) without losing a Shiny Hero Coin conversion. */
+function refreshRewards(e,t,talisman){
+  var keep=!!e.coinSold, kr=e.coinRate;
+  e.rewards=computeRewards(t,e.diff,talisman);
   if(keep){delete e.coinSold; e.coinRate=kr; setCoin(e,true);}
 }
 function coinsIn(e){return (e.rewards||[]).reduce(function(s,r){return s+(r.item==='Shiny Hero Coin'?Number(r.qty)||0:0);},0);}
@@ -550,7 +555,14 @@ function coinWeek(){
   l.forEach(function(e){var q=coinsOf(e); tot+=q; if(e.coinSold){sold+=q; n++;}});
   return {list:l,total:tot,sold:sold,all:l.length>0&&n===l.length,some:n>0&&n<l.length};
 }
-function mutate(fn){fn(); save(); render();}
+/* While 'convert coins' is on for a week, coins from new characters and runs are converted automatically.
+   With infer=true (on load) the setting is switched on for the current week if every coin there is already converted. */
+function syncCoins(infer){
+  if(!S.coinAuto) S.coinAuto={};
+  if(infer&&coinWeek().all) S.coinAuto[WK]=true;
+  S.entries.forEach(function(e){if(S.coinAuto[e.week]&&e.diff&&!e.coinSold&&coinsIn(e)>0) setCoin(e,true);});
+}
+function mutate(fn){fn(); syncCoins(); save(); render();}
 
 /* js/aggregation.js */
 /* ---------- aggregation ---------- */
