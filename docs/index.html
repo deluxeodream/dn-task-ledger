@@ -485,7 +485,7 @@ function boot(){
   var p;
   try{p=idbOpen().then(function(db){DB.db=db; return idbGet('state');}).then(function(v){return v?migrate(v):(legacyState()||defaults());});}catch(e){p=Promise.reject(e);}
   p.catch(function(){DB.db=null; return legacyState()||defaults();}).then(function(o){
-    S=o; ready=true; storageOk=!!DB.db||lsOk(); render(); save();
+    S=o; ready=true; storageOk=!!DB.db||lsOk(); syncCoins(true); render(); save();
     try{if(navigator.storage&&navigator.storage.persist) navigator.storage.persist();}catch(e){}
   });
 }
