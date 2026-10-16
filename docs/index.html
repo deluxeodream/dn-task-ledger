@@ -577,7 +577,9 @@ function aggregate(list){
     var g=goldOf(e.rewards||[]); A.gold+=g;
     if(e.coinSold){A.coins+=e.coinSold; A.coinGold+=e.coinSold*(e.coinRate||0);}
     (e.rewards||[]).forEach(function(r){
-      var it=A.items[r.item]||(A.items[r.item]={item:r.item,qty:0,ranged:false}); it.qty+=Number(r.qty)||0; if(r.qtyText)it.ranged=true;
+     var nm=isGoldItem(r.item)?'Gold':r.item;
+var it=A.items[nm]||(A.items[nm]={item:nm,qty:0,ranged:false}); it.qty+=Number(r.qty)||0;
+ if(r.qtyText)it.ranged=true;
     });
     var bt=A.byTask[e.taskName||e.taskId]||(A.byTask[e.taskName||e.taskId]={name:e.taskName||e.taskId,n:0,gold:0}); bt.n++; bt.gold+=g;
     var ck=(e.acc||'')+'|'+(e.ign||'');
