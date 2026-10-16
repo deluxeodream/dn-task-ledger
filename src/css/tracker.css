@@ -1,0 +1,33 @@
+/* Weekly tracker grid, pills, runs, gold and coin chips. */
+.gridwrap{overflow:auto;border-radius:16px;border:1px solid var(--line);background:var(--surface)}
+table{border-collapse:separate;border-spacing:0;width:100%}
+.grid th,.grid td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:middle;text-align:left;white-space:nowrap}
+.grid thead th{background:var(--surface-2);font-size:12px;color:var(--muted);font-weight:600;position:sticky;top:0;z-index:1}
+.grid thead th .tn{display:block;color:var(--ink);font-size:13px;font-family:var(--f-display)}
+.grid .sticky{position:sticky;left:0;z-index:2;background:var(--surface);border-right:1px solid var(--line);min-width:190px}
+.grid thead .sticky{background:var(--surface-2);z-index:3}
+.grid tr.acct td{background:var(--surface-2);font-weight:600;font-size:12.5px;position:static}
+.grid tr.acct td.sticky{position:sticky;background:var(--surface-2)}
+.who{display:grid;gap:3px}
+.who b{font-weight:600}
+.who .cls{color:var(--muted);font-size:12px}
+.who .meter{width:120px;height:5px}
+.pill{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--line-2);background:var(--surface);border-radius:999px;padding:5px 12px;font-weight:600;color:var(--muted);min-width:84px;justify-content:center}
+.pill:hover{border-color:var(--ink)}
+.pill.ok{background:var(--ok-bg);border-color:transparent;color:var(--ok)}
+.sel.state{min-width:150px;font-weight:500}
+.sel.state.set{background:var(--ok-bg);border-color:transparent;color:var(--ok);font-weight:600}
+.runs{display:grid;gap:6px;margin-bottom:6px}
+.run{display:flex;align-items:center;gap:6px}
+.run .rn{color:var(--muted);font-size:12px;width:20px}
+.tal{display:inline-flex;align-items:center;gap:4px;font-size:12px;color:var(--muted);border:1px solid var(--line-2);border-radius:999px;padding:3px 8px;cursor:pointer}
+.tal:has(input:checked){background:var(--gold-bg);color:var(--gold);border-color:transparent;font-weight:600}
+.tal input{margin:0;accent-color:var(--gold)}
+.card,.kpi{min-width:0}
+.chips .badge{white-space:normal;overflow-wrap:anywhere;max-width:100%}
+.coin{margin-top:2px;display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);border:1px solid var(--line-2);border-radius:999px;padding:4px 10px;cursor:pointer;white-space:nowrap}
+.coin b{font-weight:600;color:var(--ink)}
+.coin:has(input:checked){background:var(--gold-bg);color:var(--gold);border-color:transparent}
+.coin:has(input:checked) b{color:var(--gold)}
+.coin input{margin:0;accent-color:var(--gold)}
+.gold{display:inline-flex;align-items:center;gap:5px;background:var(--gold-bg);color:var(--gold);border-radius:999px;padding:2px 9px;font-size:12px;font-weight:600}

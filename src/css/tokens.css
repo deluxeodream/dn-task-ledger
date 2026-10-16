@@ -1,0 +1,19 @@
+/* Design tokens: colour, type and theme (light / dark). */
+:root{
+  --bg:#f0f3f1; --surface:#ffffff; --surface-2:#f6f8f7; --ink:#0e1411; --muted:#62706a;
+  --line:#e1e7e4; --line-2:#cfd8d3; --brand:#0e1411; --on-brand:#ffffff;
+  --ok:#0b8f5e; --ok-bg:#e1f5ec; --warn:#a84f0a; --warn-bg:#fcefdc; --bad:#bf3329; --bad-bg:#fbe8e5;
+  --gold:#8f5c06; --gold-bg:#f9efcf; --bar:#bfe2d3; --focus:#1a7f5a;
+  --f-display:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --f-body:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0b100d; --surface:#131a16; --surface-2:#19211d; --ink:#e8efeb; --muted:#8e9c95;
+  --line:#232d28; --line-2:#2f3b35; --brand:#e8efeb; --on-brand:#0b100d;
+  --ok:#3ccf94; --ok-bg:#12332a; --warn:#f0a94b; --warn-bg:#33260f; --bad:#ff7b70; --bad-bg:#3a1714;
+  --gold:#e6b84a; --gold-bg:#33290f; --bar:#1e4b3b; --focus:#3ccf94; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0b100d; --surface:#131a16; --surface-2:#19211d; --ink:#e8efeb; --muted:#8e9c95;
+  --line:#232d28; --line-2:#2f3b35; --brand:#e8efeb; --on-brand:#0b100d;
+  --ok:#3ccf94; --ok-bg:#12332a; --warn:#f0a94b; --warn-bg:#33260f; --bad:#ff7b70; --bad-bg:#3a1714;
+  --gold:#e6b84a; --gold-bg:#33290f; --bar:#1e4b3b; --focus:#3ccf94; color-scheme:dark}

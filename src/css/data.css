@@ -1,0 +1,27 @@
+/* Tables, empty states, bars, charts and activity feed. */
+.tbl th,.tbl td{padding:9px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}
+.tbl thead th{font-size:12px;color:var(--muted);font-weight:600;background:var(--surface-2)}
+.tbl td.r,.tbl th.r{text-align:right}
+.tbl tr:last-child td{border-bottom:0}
+.scroll{overflow-x:auto}
+.empty{padding:36px 18px;text-align:center;display:grid;gap:10px;justify-items:center;color:var(--muted)}
+.empty h3{color:var(--ink);font-size:16px}
+
+.bars{display:grid;gap:10px}
+.hbar{display:grid;grid-template-columns:minmax(80px,120px) 1fr auto;gap:10px;align-items:center;font-size:13px}
+.hbar .t{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hbar .meter{height:8px}
+.chart{width:100%;height:auto}
+.chart text{fill:var(--muted);font-size:11px;font-family:var(--f-body)}
+.chart .g{stroke:var(--line);stroke-width:1}
+.chart .b{fill:var(--bar)}
+.chart .b.cur{fill:var(--ok)}
+.chart .vl{fill:var(--ink);font-weight:600}
+
+.feed{display:grid}
+.feed li{list-style:none;display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.feed li:last-child{border-bottom:0}
+.feed ul{margin:0;padding:0}
+.feed .m{min-width:0}
+.feed .m b{font-weight:600}
+.feed .m div{color:var(--muted);font-size:12.5px;overflow:hidden;text-overflow:ellipsis}

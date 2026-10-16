@@ -1,0 +1,14 @@
+/* Dialog, chips, toast. */
+.scrim{position:fixed;inset:0;background:rgba(8,12,10,.55);display:grid;place-items:center;padding:16px;z-index:50;overflow:auto}
+.dlg{background:var(--surface);border:1px solid var(--line);border-radius:20px;width:min(640px,100%);max-height:100%;overflow:auto;padding:22px;display:grid;gap:16px}
+.dlg h2{font-size:20px}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line-2);border-radius:999px;padding:7px 12px;cursor:pointer;font-weight:500;background:var(--surface)}
+.chip:has(input:checked){background:var(--brand);color:var(--on-brand);border-color:var(--brand)}
+.chip input{margin:0;accent-color:var(--ok)}
+.grp{display:grid;gap:8px}
+.grp h3{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-family:var(--f-body);font-weight:600}
+.dlg-f{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--brand);color:var(--on-brand);padding:10px 16px;border-radius:999px;font-weight:600;z-index:80;opacity:0;pointer-events:none;transition:opacity .2s;max-width:calc(100% - 32px);text-align:center}
+#toast.on{opacity:1}

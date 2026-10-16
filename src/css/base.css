@@ -1,0 +1,21 @@
+/* Base document rules: safe-area insets for phones, hidden attribute, media. */
+:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;padding:0}
+img{max-width:100%}
+[hidden]:not([hidden=until-found i]){display:none!important}
+
+/* Reset, typography and shared primitives. */
+*{box-sizing:border-box}
+html,body{min-height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:14px;line-height:1.45;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;font-optical-sizing:auto;font-feature-settings:'cv11','ss03','calt'}
+h1{font-size:24px;font-weight:650;letter-spacing:-.022em;line-height:1.2}
+h2{font-size:15px;font-weight:600;letter-spacing:-.011em}
+.num,.kpi .v,td.num{font-feature-settings:'tnum','cv11','zero'}
+h1,h2,h3{font-family:var(--f-display);margin:0;font-weight:600;letter-spacing:-.01em;text-wrap:balance}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+svg{display:block}
+.ico{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.num{font-variant-numeric:tabular-nums}

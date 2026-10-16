@@ -1,0 +1,1282 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Task Ledger</title>
+  <meta name="description" content="Weekly task and gold tracker for Dragon Nest players.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Nunito:wght@800&display=swap">
+
+  <!-- Styles (inlined by build.py) -->
+  <style>
+/* css/tokens.css */
+/* Design tokens: colour, type and theme (light / dark). */
+:root{
+  --bg:#f0f3f1; --surface:#ffffff; --surface-2:#f6f8f7; --ink:#0e1411; --muted:#62706a;
+  --line:#e1e7e4; --line-2:#cfd8d3; --brand:#0e1411; --on-brand:#ffffff;
+  --ok:#0b8f5e; --ok-bg:#e1f5ec; --warn:#a84f0a; --warn-bg:#fcefdc; --bad:#bf3329; --bad-bg:#fbe8e5;
+  --gold:#8f5c06; --gold-bg:#f9efcf; --bar:#bfe2d3; --focus:#1a7f5a;
+  --f-display:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --f-body:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0b100d; --surface:#131a16; --surface-2:#19211d; --ink:#e8efeb; --muted:#8e9c95;
+  --line:#232d28; --line-2:#2f3b35; --brand:#e8efeb; --on-brand:#0b100d;
+  --ok:#3ccf94; --ok-bg:#12332a; --warn:#f0a94b; --warn-bg:#33260f; --bad:#ff7b70; --bad-bg:#3a1714;
+  --gold:#e6b84a; --gold-bg:#33290f; --bar:#1e4b3b; --focus:#3ccf94; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0b100d; --surface:#131a16; --surface-2:#19211d; --ink:#e8efeb; --muted:#8e9c95;
+  --line:#232d28; --line-2:#2f3b35; --brand:#e8efeb; --on-brand:#0b100d;
+  --ok:#3ccf94; --ok-bg:#12332a; --warn:#f0a94b; --warn-bg:#33260f; --bad:#ff7b70; --bad-bg:#3a1714;
+  --gold:#e6b84a; --gold-bg:#33290f; --bar:#1e4b3b; --focus:#3ccf94; color-scheme:dark}
+
+/* css/base.css */
+/* Base document rules: safe-area insets for phones, hidden attribute, media. */
+:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;padding:0}
+img{max-width:100%}
+[hidden]:not([hidden=until-found i]){display:none!important}
+
+/* Reset, typography and shared primitives. */
+*{box-sizing:border-box}
+html,body{min-height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:14px;line-height:1.45;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;font-optical-sizing:auto;font-feature-settings:'cv11','ss03','calt'}
+h1{font-size:24px;font-weight:650;letter-spacing:-.022em;line-height:1.2}
+h2{font-size:15px;font-weight:600;letter-spacing:-.011em}
+.num,.kpi .v,td.num{font-feature-settings:'tnum','cv11','zero'}
+h1,h2,h3{font-family:var(--f-display);margin:0;font-weight:600;letter-spacing:-.01em;text-wrap:balance}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+svg{display:block}
+.ico{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.num{font-variant-numeric:tabular-nums}
+
+/* css/layout.css */
+/* App shell: fixed left rail + scrolling workspace. */
+.shell{display:grid;grid-template-columns:228px minmax(0,1fr);min-height:100vh}
+.rail{position:sticky;top:0;align-self:start;height:100vh;display:flex;flex-direction:column;gap:20px;padding:20px 14px;background:var(--surface);border-right:1px solid var(--line)}
+.brand{padding:0 6px}
+.brand span{font-family:var(--f-display);font-weight:700;font-size:18px;letter-spacing:-.02em;color:var(--ink)}
+.nav{display:flex;flex-direction:column;gap:2px}
+.nav-label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:0 10px 6px;font-weight:600}
+.nav button{display:flex;align-items:center;gap:10px;border:0;background:none;padding:9px 10px;border-radius:9px;color:var(--muted);font-weight:500;text-align:left}
+.nav button:hover{background:var(--surface-2);color:var(--ink)}
+.nav button[aria-current="page"]{background:var(--surface-2);color:var(--ink);font-weight:600;box-shadow:inset 0 0 0 1px var(--line)}
+.reset-card{margin-top:auto;border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--surface-2);display:grid;gap:4px}
+.reset-card .k{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.reset-card .v{font-family:var(--f-display);font-size:18px;font-weight:600}
+.reset-card .s{color:var(--muted);font-size:12px}
+
+.work{min-width:0;padding:20px 24px 40px;display:flex;flex-direction:column;gap:18px}
+.top{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.crumb{font-size:12px;color:var(--muted);margin-bottom:4px}
+.top h1{font-size:24px}
+.top-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+
+/* css/components.css */
+/* Buttons, cards, KPI tiles, form controls. */
+.btn{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line-2);background:var(--surface);border-radius:999px;padding:8px 14px;font-weight:600;line-height:1.1}
+.btn:hover{border-color:var(--ink)}
+.btn.primary{background:var(--brand);color:var(--on-brand);border-color:var(--brand)}
+.btn.primary:disabled{opacity:.4;cursor:not-allowed}
+.btn.sm{padding:6px 11px;font-size:13px}
+.btn.danger{color:var(--bad);border-color:color-mix(in srgb,var(--bad) 40%,var(--line))}
+.btn.danger.armed{background:var(--bad);color:#fff;border-color:var(--bad)}
+.ib{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;border:1px solid transparent;background:none;color:var(--muted)}
+.ib:hover{background:var(--surface-2);color:var(--ink);border-color:var(--line)}
+.ib.armed{background:var(--bad);color:#fff;width:auto;padding:0 8px;font-size:12px;font-weight:600}
+.link{border:0;background:none;color:var(--ok);font-weight:600;padding:2px 0;display:inline-flex;gap:4px;align-items:center}
+.link:hover{text-decoration:underline}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px}
+.card-h{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 16px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.card-h h2{font-size:15px}
+.card-b{padding:16px}
+.sub{color:var(--muted);font-size:12.5px}
+
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 16px;display:grid;gap:6px;min-width:0}
+.kpi .k{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:12.5px;font-weight:500}
+.kpi .k .ico{width:15px;height:15px}
+.kpi .v{font-family:var(--f-display);font-size:26px;font-weight:600;letter-spacing:-.02em;line-height:1.1}
+.kpi .v small{font-size:13px;color:var(--muted);font-weight:500;margin-left:4px}
+.meter{height:6px;border-radius:99px;background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--line);overflow:hidden}
+.meter i{display:block;height:100%;background:var(--ok);border-radius:99px}
+
+.cols{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:12px}
+.stack{display:grid;gap:12px;min-width:0}
+
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.field{display:grid;gap:4px;min-width:0}
+.field>span{font-size:12px;color:var(--muted);font-weight:500}
+.in,.sel{border:1px solid var(--line-2);background:var(--surface);border-radius:10px;padding:8px 10px;min-width:0;max-width:100%}
+.in:hover,.sel:hover{border-color:var(--muted)}
+.in.sm,.sel.sm{padding:6px 8px;font-size:13px}
+.seg{display:inline-flex;border:1px solid var(--line-2);border-radius:999px;padding:3px;background:var(--surface)}
+.seg button{border:0;background:none;border-radius:999px;padding:6px 14px;font-weight:600;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--brand);color:var(--on-brand)}
+
+/* css/tracker.css */
+/* Weekly tracker grid, pills, runs, gold and coin chips. */
+.gridwrap{overflow:auto;border-radius:16px;border:1px solid var(--line);background:var(--surface)}
+table{border-collapse:separate;border-spacing:0;width:100%}
+.grid th,.grid td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:middle;text-align:left;white-space:nowrap}
+.grid thead th{background:var(--surface-2);font-size:12px;color:var(--muted);font-weight:600;position:sticky;top:0;z-index:1}
+.grid thead th .tn{display:block;color:var(--ink);font-size:13px;font-family:var(--f-display)}
+.grid .sticky{position:sticky;left:0;z-index:2;background:var(--surface);border-right:1px solid var(--line);min-width:190px}
+.grid thead .sticky{background:var(--surface-2);z-index:3}
+.grid tr.acct td{background:var(--surface-2);font-weight:600;font-size:12.5px;position:static}
+.grid tr.acct td.sticky{position:sticky;background:var(--surface-2)}
+.who{display:grid;gap:3px}
+.who b{font-weight:600}
+.who .cls{color:var(--muted);font-size:12px}
+.who .meter{width:120px;height:5px}
+.pill{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--line-2);background:var(--surface);border-radius:999px;padding:5px 12px;font-weight:600;color:var(--muted);min-width:84px;justify-content:center}
+.pill:hover{border-color:var(--ink)}
+.pill.ok{background:var(--ok-bg);border-color:transparent;color:var(--ok)}
+.sel.state{min-width:150px;font-weight:500}
+.sel.state.set{background:var(--ok-bg);border-color:transparent;color:var(--ok);font-weight:600}
+.runs{display:grid;gap:6px;margin-bottom:6px}
+.run{display:flex;align-items:center;gap:6px}
+.run .rn{color:var(--muted);font-size:12px;width:20px}
+.tal{display:inline-flex;align-items:center;gap:4px;font-size:12px;color:var(--muted);border:1px solid var(--line-2);border-radius:999px;padding:3px 8px;cursor:pointer}
+.tal:has(input:checked){background:var(--gold-bg);color:var(--gold);border-color:transparent;font-weight:600}
+.tal input{margin:0;accent-color:var(--gold)}
+.card,.kpi{min-width:0}
+.chips .badge{white-space:normal;overflow-wrap:anywhere;max-width:100%}
+.coin{margin-top:2px;display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);border:1px solid var(--line-2);border-radius:999px;padding:4px 10px;cursor:pointer;white-space:nowrap}
+.coin b{font-weight:600;color:var(--ink)}
+.coin:has(input:checked){background:var(--gold-bg);color:var(--gold);border-color:transparent}
+.coin:has(input:checked) b{color:var(--gold)}
+.coin input{margin:0;accent-color:var(--gold)}
+.gold{display:inline-flex;align-items:center;gap:5px;background:var(--gold-bg);color:var(--gold);border-radius:999px;padding:2px 9px;font-size:12px;font-weight:600}
+
+/* css/data.css */
+/* Tables, empty states, bars, charts and activity feed. */
+.tbl th,.tbl td{padding:9px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}
+.tbl thead th{font-size:12px;color:var(--muted);font-weight:600;background:var(--surface-2)}
+.tbl td.r,.tbl th.r{text-align:right}
+.tbl tr:last-child td{border-bottom:0}
+.scroll{overflow-x:auto}
+.empty{padding:36px 18px;text-align:center;display:grid;gap:10px;justify-items:center;color:var(--muted)}
+.empty h3{color:var(--ink);font-size:16px}
+
+.bars{display:grid;gap:10px}
+.hbar{display:grid;grid-template-columns:minmax(80px,120px) 1fr auto;gap:10px;align-items:center;font-size:13px}
+.hbar .t{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hbar .meter{height:8px}
+.chart{width:100%;height:auto}
+.chart text{fill:var(--muted);font-size:11px;font-family:var(--f-body)}
+.chart .g{stroke:var(--line);stroke-width:1}
+.chart .b{fill:var(--bar)}
+.chart .b.cur{fill:var(--ok)}
+.chart .vl{fill:var(--ink);font-weight:600}
+
+.feed{display:grid}
+.feed li{list-style:none;display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.feed li:last-child{border-bottom:0}
+.feed ul{margin:0;padding:0}
+.feed .m{min-width:0}
+.feed .m b{font-weight:600}
+.feed .m div{color:var(--muted);font-size:12.5px;overflow:hidden;text-overflow:ellipsis}
+
+/* css/manage.css */
+/* Manage page: tabs, task editor, switches, badges. */
+.acct-card{margin-bottom:12px}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);overflow-x:auto}
+.tabs button{border:0;background:none;padding:10px 14px;font-weight:600;color:var(--muted);border-bottom:2px solid transparent;white-space:nowrap}
+.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--brand)}
+.form-row{display:flex;gap:8px;flex-wrap:wrap;align-items:flex-end}
+.form-row .field{flex:1 1 150px}
+.editor{display:grid;grid-template-columns:minmax(220px,300px) minmax(0,1fr);gap:12px;align-items:start}
+.tasklist{display:grid;gap:4px;padding:8px}
+.xfer{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
+.xfer .sub b{color:var(--ink);font-weight:600;margin-right:4px}
+.trow{display:flex;align-items:center;gap:8px;border-radius:10px;padding:8px 10px;border:1px solid transparent;cursor:pointer;background:none;text-align:left;width:100%}
+.trow:hover{background:var(--surface-2)}
+.trow[aria-current="true"]{background:var(--surface-2);border-color:var(--line-2)}
+.trow .n{flex:1;min-width:0}
+.trow .n b{display:block;font-weight:600}
+.trow .n span{display:block;color:var(--muted);font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.switch{position:relative;width:34px;height:20px;flex:none}
+.switch input{appearance:none;-webkit-appearance:none;width:34px;height:20px;border-radius:99px;background:var(--line-2);margin:0;cursor:pointer;transition:background .15s}
+.switch input:checked{background:var(--ok)}
+.switch::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;pointer-events:none;transition:transform .15s}
+.switch:has(input:checked)::after{transform:translateX(14px)}
+.badge{display:inline-block;font-size:11px;font-weight:600;border-radius:99px;padding:2px 8px;background:var(--surface-2);color:var(--muted);border:1px solid var(--line)}
+.note{background:var(--warn-bg);color:var(--warn);border-radius:10px;padding:10px 12px;font-size:12.5px}
+
+/* css/overlays.css */
+/* Dialog, chips, toast. */
+.scrim{position:fixed;inset:0;background:rgba(8,12,10,.55);display:grid;place-items:center;padding:16px;z-index:50;overflow:auto}
+.dlg{background:var(--surface);border:1px solid var(--line);border-radius:20px;width:min(640px,100%);max-height:100%;overflow:auto;padding:22px;display:grid;gap:16px}
+.dlg h2{font-size:20px}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line-2);border-radius:999px;padding:7px 12px;cursor:pointer;font-weight:500;background:var(--surface)}
+.chip:has(input:checked){background:var(--brand);color:var(--on-brand);border-color:var(--brand)}
+.chip input{margin:0;accent-color:var(--ok)}
+.grp{display:grid;gap:8px}
+.grp h3{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-family:var(--f-body);font-weight:600}
+.dlg-f{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--brand);color:var(--on-brand);padding:10px 16px;border-radius:999px;font-weight:600;z-index:80;opacity:0;pointer-events:none;transition:opacity .2s;max-width:calc(100% - 32px);text-align:center}
+#toast.on{opacity:1}
+
+/* css/responsive.css */
+/* Breakpoints and motion preferences. */
+@media (max-width:1040px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.cols{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:560px){.kpis{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:860px){
+  .shell{grid-template-columns:minmax(0,1fr)}
+  .rail{position:sticky;top:env(safe-area-inset-top,0px);height:auto;flex-direction:row;align-items:center;gap:10px;padding:8px 12px;z-index:20;border-right:0;border-bottom:1px solid var(--line);overflow-x:auto}
+  .nav{flex-direction:row;gap:2px}
+  .nav-label,.reset-card{display:none}
+  .nav button{padding:8px 11px;white-space:nowrap}
+  .work{padding:16px 16px 40px}
+  .editor{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:520px){.kpis{grid-template-columns:minmax(0,1fr)}.top h1{font-size:21px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <!-- Scripts (concatenated and inlined by build.py, order matters) -->
+  <script>
+(function () {
+'use strict';
+
+/* js/config.js */
+/* App-wide constants. The storage key is unchanged so existing saved data keeps working. */
+var KEY='nest-ledger:v1';
+
+/* js/icons.js */
+/* ---------- icons ---------- */
+var IC={
+  dash:'<path d="M4 4h7v7H4zM13 4h7v4h-7zM13 11h7v9h-7zM4 14h7v6H4z"/>',
+  list:'<path d="M9 6h11M9 12h11M9 18h11M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"/>',
+  chart:'<path d="M4 20V11M10 20V4M16 20v-7M22 20H2"/>',
+  sliders:'<path d="M4 7h8M16 7h4M4 17h4M12 17h8"/><circle cx="14" cy="7" r="2"/><circle cx="10" cy="17" r="2"/>',
+  plus:'<path d="M12 5v14M5 12h14"/>',
+  trash:'<path d="M5 7h14M10 7V4h4v3M7 7l1 13h8l1-13"/>',
+  x:'<path d="M6 6l12 12M18 6L6 18"/>',
+  check:'<path d="M5 12l4 4 10-10"/>',
+  down:'<path d="M12 4v11M7 11l5 5 5-5M5 20h14"/>',
+  up:'<path d="M12 16V5M7 9l5-5 5 5M5 20h14"/>',
+  clock:'<circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/>',
+  left:'<path d="M15 5l-7 7 7 7"/>',
+  right:'<path d="M9 5l7 7-7 7"/>',
+  users:'<circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6M17 5a3 3 0 010 6M21 20c0-2.5-1.3-4.5-3.5-5.5"/>',
+  coin:'<circle cx="12" cy="12" r="8"/><path d="M12 8v8M9.5 10.5c0-1 1-1.5 2.5-1.5s2.5.6 2.5 1.7-1 1.5-2.5 1.8-2.5.7-2.5 1.8 1 1.7 2.5 1.7 2.5-.6 2.5-1.5"/>',
+  target:'<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.5"/>'
+};
+function ico(n){return '<svg class="ico" viewBox="0 0 24 24" aria-hidden="true">'+IC[n]+'</svg>';}
+
+/* js/utils.js */
+/* ---------- helpers ---------- */
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function uid(){return Math.random().toString(36).slice(2,9)+Date.now().toString(36).slice(-4);}
+function $(s){return document.querySelector(s);}
+function pad(n){return (n<10?'0':'')+n;}
+function dateKey(d){return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());}
+var MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+var DOW=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+function fmtDay(d){return DOW[d.getDay()]+' '+d.getDate()+' '+MON[d.getMonth()]+' '+d.getFullYear();}
+function fmtShort(d){return MON[d.getMonth()]+' '+d.getDate();}
+function fmtGold(q,full){
+  var cp=Math.round((Number(q)||0)*10000), g=Math.floor(cp/10000), s=Math.floor((cp%10000)/100), c=cp%100;
+  return full ? g.toLocaleString('en-US')+'g '+pad(s)+'s '+pad(c)+'c' : g.toLocaleString('en-US')+'g';
+}
+function fmtCompact(n){
+  if(n>=1e9) return (n/1e9).toFixed(n%1e9?1:0)+'B';
+  if(n>=1e6) return (n/1e6).toFixed(n%1e6?1:0)+'M';
+  if(n>=1e3) return (n/1e3).toFixed(n%1e3?1:0)+'k';
+  return String(n);
+}
+function fmtQty(r){
+  if(r.item==='Gold') return fmtGold(r.qty,true);
+  return r.qtyText ? r.qtyText : Number(r.qty).toLocaleString('en-US');
+}
+function rel(ts){
+  var m=Math.round((Date.now()-ts)/60000);
+  if(m<1) return 'just now'; if(m<60) return m+' min ago';
+  var h=Math.round(m/60); if(h<24) return h+' h ago';
+  var d=Math.round(h/24); return d+' d ago';
+}
+
+/* ---------- weekly reset: Saturday 09:00 local time ---------- */
+function weekStart(d){
+  var x=new Date(d), back=(x.getDay()-6+7)%7;
+  var s=new Date(x.getFullYear(),x.getMonth(),x.getDate()-back,9,0,0,0);
+  if(s>x) s=new Date(s.getFullYear(),s.getMonth(),s.getDate()-7,9,0,0,0);
+  return s;
+}
+function addDays(d,n){return new Date(d.getFullYear(),d.getMonth(),d.getDate()+n,d.getHours(),d.getMinutes(),0,0);}
+
+/* js/data.js */
+/* ---------- seed data (from patch 180, patch 197 and rcr_rewards) ---------- */
+var FLOORS=(function(){
+  var a=['Ascension 1F','Ascension 2F','Ascension 3F'],i;
+  for(i=1;i<=8;i++)a.push('Ascension 3-'+i+'F');
+  a.push('Ascension 4F'); for(i=1;i<=5;i++)a.push('Ascension 4-'+i+'F');
+  a.push('Ascension 5F'); for(i=1;i<=5;i++)a.push('Ascension 5-'+i+'F');
+  a.push('Ascension 6F','Ascension 6-1F','Ascension 6-2F');
+  for(i=1;i<=10;i++)a.push('Dimension '+i+'F');
+  return a;
+})();
+var HAM1='Heroic Lunar Eclipse Dragon Jade +1 Enhancement Hammer (+0 to +14) (Untradable)';
+var HAM5='Heroic Lunar Eclipse Dragon Jade +5 Enhancement Hammer (+0 to +14) (Untradable)';
+/* Weekly Conquest (Nightmare / Deep Abyss), patch 197: [Shiny Hero Coin, Superb Ancient Wisdom, +1 Hammer, +5 Hammer] */
+var NMDATA=[[1,100,1,0],[1,100,1,0],[1,150,2,0],[1,150,2,0],[1,150,3,0],[1,150,3,0],[1,150,4,0],[1,150,4,0],[1,150,5,0],[1,150,5,0],[1,150,1,1],
+ [2,165,1,1],[2,165,2,1],[2,165,2,1],[2,165,3,1],[2,165,3,1],[2,165,4,1],
+ [3,180,4,1],[3,180,5,1],[3,180,5,1],[3,180,1,2],[3,180,1,2],[3,180,2,2],
+ [4,200,2,2],[4,200,3,2],[4,200,3,2],
+ [4,250,4,2],[4,250,4,2],[4,250,5,2],[5,250,5,2],[5,250,1,3],[5,250,1,3],[5,250,2,3],[5,250,2,3],[5,250,3,3],[5,250,3,3]];
+/* Erosion rewards, patch 180: [gold, silver, copper] for Ascension 3-1F to 6-2F; Erosion Fragment 128 on every floor */
+var EFMGOLD=[[27500,0,0],[27775,0,0],[28052,75,0],[28333,27,75],[28616,61,3],[28902,77,64],[29191,80,41],[29483,72,22],
+ [29778,55,94],[30076,34,50],[30377,10,84],[30680,87,95],[30987,68,83],[31297,56,52],
+ [31610,54,9],[31926,64,63],[32245,91,27],[32568,37,19],[32894,5,56],[33222,99,61],
+ [33555,22,61],[33890,77,84],[34229,68,61]];
+/* Royal Castle Ruins EX Nest, rcr_rewards: Ascension 3F to Dimension 10F fragment quantity */
+var RCRFRAG=[5,6,7,8,9,10,11,12,13,15,16,17,18,19,20,10,10,13,13,14,15,16,17,18,19,20,25,10,12,14,15,21,27,32];
+
+/* Selectable classes, in game order (grouped by job family). */
+var CLASSLIST=['Inquisitor','Saint','Crusader','Guardian','Arch Heretic',
+ 'Sniper','Artillery','Tempest','Windwalker','Silver Hunter',
+ 'Moonlord','Gladiator','Barbarian','Destroyer','Mystic Knight','Grandmaster','Dark Avenger',
+ 'Saleana','Elestra','Smasher','Majesty','Black Mara',
+ 'Adept','Physician','Shooting Star','Gear Master','Ray Mechanic',
+ 'Ripper','Raven','Abyss Walker','Light Fury','Bleed Phantom',
+ 'Impactor','Luster','Defensio','Ruina','Beastia Reina',
+ 'Randgrid','Avalanche','Flurry','Sting Breezer','Vena Plaga',
+ 'Spirit Dancer','Blade Dancer','Soul Eater','Dark Summoner','Oracle Elder',
+ 'Duelist','Trickster','Maverick','Revenant','Lux Ascendant',
+ 'Ringmaster'];
+function R(item,qty,qtyText){var o={item:item,qty:qty}; if(qtyText)o.qtyText=qtyText; return o;}
+function emptyDiffs(){return FLOORS.map(function(n){return {name:n,rewards:[]};});}
+function doneDiff(rewards){return [{name:'Done',rewards:rewards||[]}];}
+
+/* ARK weekly clear rewards, patch 199 (Ark of Transcendence [Past] 1F-50F). Per floor: flat [itemIndex, qty, ...] */
+var ARKITEMS=["Lunar Eclipse Fragment (6 Types)", "Ancient Broken Dragon Jade Fragment", "Ark Stone Fragment", "High Grade Lunar Eclipse Fragment (6 Types)", "Ancients' Blueprint Fragment", "Hero Coin", "Shiny Hero Coin", "High Purity Core Selection Pouch"];
+var ARKDATA=[[0,150,1,5,2,1],[0,225,1,5,2,1],[0,300,1,5,2,1],[0,375,1,5,2,1],[0,450,1,8,2,1],[0,525,1,8,2,1],[0,600,1,8,2,1],[0,675,1,8,2,1],[0,750,1,8,2,1],[0,825,1,15,2,1],[0,900,1,15,2,1],[0,975,1,15,2,1],[0,1050,1,15,2,1],[0,1125,1,15,2,1],[3,45,1,23,2,1,4,45],[3,45,1,23,2,1,4,45],[3,45,1,23,2,1,4,45],[3,45,1,23,2,1,4,45],[3,45,1,23,2,1,4,45],[3,75,1,38,2,1,4,60],[3,75,1,38,2,1,4,60],[3,75,1,38,2,1,4,60],[3,75,1,38,2,1,4,60],[3,75,1,38,2,1,4,60],[3,150,1,45,2,1,4,75],[3,151,1,46,2,1,4,75,5,10000],[3,152,1,47,2,1,4,75,5,10000],[3,153,1,48,2,1,4,75,5,10000],[3,154,1,49,2,1,4,75,5,10000],[3,155,1,50,2,1,4,90,5,15000],[3,156,1,51,2,1,4,90,5,15000],[3,157,1,52,2,1,4,90,5,15000],[3,158,1,53,2,1,4,90,5,15000],[3,159,1,54,2,1,4,90,5,15000],[3,160,1,55,2,1,4,105,6,2],[3,161,1,56,2,1,4,105,6,2],[3,162,1,57,2,1,4,105,6,2],[3,163,1,58,2,1,4,105,6,2],[3,164,1,59,2,1,4,105,6,2],[3,165,1,60,2,1,4,120,6,3],[3,166,1,61,2,1,4,120,6,3],[3,167,1,62,2,1,4,120,6,3],[3,168,1,63,2,1,4,120,6,3],[3,169,1,64,2,1,4,120,6,3],[3,170,1,65,2,1,4,135,6,4,7,1],[3,171,1,66,2,1,4,135,6,4,7,1],[3,172,1,67,2,1,4,135,6,4,7,1],[3,173,1,68,2,1,4,135,6,4,7,1],[3,174,1,69,2,1,4,135,6,4,7,1],[3,175,1,70,2,1,4,150,6,5,7,1]];
+function arkDiffs(){return ARKDATA.map(function(d,i){var rw=[];for(var k=0;k<d.length;k+=2)rw.push(R(ARKITEMS[d[k]],d[k+1]));return {name:'Ark of Transcendence [Past] '+(i+1)+'F',rewards:rw};});}
+
+/* Decaying Root Cave chest selection (DNSEA Apr 2026), Ascension 1F to Dimension 4F.
+   Groups of consecutive floors sharing one row: [floor count, [golden low, golden high, Twisted Root, Contaminated Will, silver low, silver high]].
+   The fragment amount is a random range (low - high; the low value is counted in totals). Contaminated Will is a chance drop, so it counts as 0.
+   Golden and silver are separate choices, so each floor has one entry per chest. */
+var ROOTFRAG='Deeply Rooted Fragment of Longing';
+var ROOTGROUPS=[[1,[3,9,0,0,1,0]],[1,[4,12,0,0,1,0]],[9,[5,15,0,0,2,0]],[6,[6,18,0,0,2,0]],[6,[8,24,2,1,2,7]],[3,[9,27,3,1,3,8]],
+ [1,[10,30,3,1,3,9]],[1,[12,36,4,1,4,11]],[1,[13,39,4,1,4,12]],[1,[15,45,5,1,5,14]]];
+function rootDiffs(){
+  var gold=[], silver=[], idx=0;
+  ROOTGROUPS.forEach(function(g){
+    var v=g[1];
+    for(var k=0;k<g[0];k++){
+      var f=FLOORS[idx++], gr=[R(ROOTFRAG,v[0],v[0]+' - '+v[1])], sr=[v[5]?R(ROOTFRAG,v[4],v[4]+' - '+v[5]):R(ROOTFRAG,v[4])];
+      if(v[2])gr.push(R('Twisted Root',v[2]));
+      if(v[3])gr.push(R('Contaminated Will',0,v[3]+' (probability)'));
+      gold.push({name:'Golden \u00b7 '+f,rewards:gr});
+      silver.push({name:'Silver \u00b7 '+f,rewards:sr});
+    }
+  });
+  return gold.concat(silver);
+}
+
+function defaultTasks(){
+  var i0=FLOORS.indexOf('Ascension 3-1F'), i1=FLOORS.indexOf('Ascension 6-2F'), r0=FLOORS.indexOf('Ascension 3F');
+  var efm=FLOORS.slice(i0,i1+1).map(function(n,i){var g=EFMGOLD[i];return {name:n,rewards:[R('Gold',g[0]+g[1]/100+g[2]/10000),R('Erosion Fragment',128)]};});
+  var nm=FLOORS.map(function(n,i){var d=NMDATA[i],rw=[R('Shiny Hero Coin',d[0]),R('Superb Ancient Wisdom',d[1]),R(HAM1,d[2])]; if(d[3])rw.push(R(HAM5,d[3])); return {name:n,rewards:rw};});
+  var rcr=FLOORS.slice(r0).map(function(n,i){
+    var rw=[R(i<15?'Destroyed Ruins Fragment':(i<27?'Ruins Fragment':'Refined Ruins Fragment'),RCRFRAG[i])];
+    if(i>=9&&i<=14) rw.push(R('Incomplete Royal Castle Heraldry',1));
+    else if(i>=24&&i<=30) rw.push(R('Royal Castle Heraldry',1,'1~2'));
+    else if(i>=31) rw.push(R('Royal Castle Heraldry',0,'1~2 (probability)'));
+    return {name:n,rewards:rw};
+  });
+  function T(id,name,kind,sub,diffs){return {id:id,name:name,kind:kind,sub:sub||'',enabled:false,difficulties:diffs};}
+  var ark=T('ark','ARK','diff','Weekly clear rewards by floor (patch 199). Multiple runs',arkDiffs()); ark.multi=true;
+  return [
+    ark,
+    T('efm','EFM','efm','Fission Maze, Erosion rewards. Multiple runs',efm),
+    T('nm','NM','nm','Nightmare (Deep Abyss). Highest clear counts',nm),
+    T('rcr','RCR','diff','Royal Castle Ruins EX Nest',rcr),
+    T('cube','Cube Awaken','diff','Difficulty',emptyDiffs()),
+    T('root','Decaying Root','diff','Decaying Root Cave chest selection (DNSEA Apr 2026)',rootDiffs()),
+    T('pfdl','Paradox FrDN L','done','Paradox Frozen Dragon Nest, Light',doneDiff([R('Awakened Mana Egg',200,'200 - 1000'),R('Paradox Vitality Recovery Potion',20)])),
+    T('pfdn','Paradox FrDN N','done','Paradox Frozen Dragon Nest, Normal',doneDiff([R('Awakened Mana Egg',400,'400 - 2000'),R('Afterimage Record',45),R('Paradox Vitality Recovery Potion',20)])),
+    T('godnz','GoDNZ','done','',doneDiff()),
+    T('godn','GoDN','done','',doneDiff()),
+    T('godnhc','GoDN HC','done','',doneDiff()),
+    T('bonel','Bone L','done','',doneDiff()),
+    T('bonen','Bone N','done','',doneDiff()),
+    T('bonehc','Bone HC','done','',doneDiff()),
+    T('bdnl','BDN L','done','',doneDiff()),
+    T('bdnhc','BDN HC','done','',doneDiff()),
+    T('ddn','DDN','done','',doneDiff()),
+    T('gudnhc','GUDN HC','done','',doneDiff())
+  ];
+}
+
+/* js/state.js */
+/* ---------- state ---------- */
+function defaults(){return {v:1,setupDone:false,settings:{talisman:30,coinRate:10000},accounts:[],chars:[],classes:CLASSLIST.slice(),cv:1,tasks:defaultTasks(),entries:[]};}
+function migrate(o){
+  var d=defaults();
+  if(!o||typeof o!=='object') return d;
+  o.settings=Object.assign({},d.settings,o.settings||{}); if(o.settings.coinRate===5000)o.settings.coinRate=10000;
+  ['accounts','chars','classes','entries'].forEach(function(k){if(!Array.isArray(o[k]))o[k]=[];});
+  if(!Array.isArray(o.tasks)||!o.tasks.length) o.tasks=d.tasks;
+  d.tasks.forEach(function(t){if(!o.tasks.some(function(x){return x.id===t.id;}))o.tasks.push(t);});
+  var ak=o.tasks.find(function(x){return x.id==='ark';}), ad=d.tasks.find(function(x){return x.id==='ark';});
+  if(ak&&ad&&Array.isArray(ak.difficulties)&&ak.difficulties.every(function(x){return !(x.rewards&&x.rewards.length)&&FLOORS.indexOf(x.name)>=0;})){ak.difficulties=ad.difficulties; ak.sub=ad.sub;}
+  var rk=o.tasks.find(function(x){return x.id==='root';}), rd=d.tasks.find(function(x){return x.id==='root';});
+  if(rk&&rd&&Array.isArray(rk.difficulties)){
+    var rEmpty=rk.difficulties.every(function(x){return !(x.rewards&&x.rewards.length)&&FLOORS.indexOf(x.name)>=0;});
+    var rOld=rk.difficulties.some(function(x){return (x.rewards||[]).some(function(r){return r.item===ROOTFRAG+' (Low)';});});
+    if(rEmpty||rOld){
+      rk.difficulties=rd.difficulties; rk.sub=rd.sub;
+      o.entries.forEach(function(e){
+        if(e.taskId!=='root'||!(e.rewards||[]).some(function(r){return r.item===ROOTFRAG+' (Low)';})) return;
+        var nd=rd.difficulties.find(function(x){return x.name===e.diff;});
+        e.rewards=nd?nd.rewards.map(function(r){var q={item:r.item,qty:r.qty}; if(r.qtyText)q.qtyText=r.qtyText; return q;}):[];
+      });
+    }
+  }
+  if(ak){ak.multi=true; if(ak.sub==='Weekly clear rewards by floor (patch 199)') ak.sub=ad.sub;}
+  if(!o.cv){ /* one-time: start from the official class list, keep any custom classes after it */
+    var extra=o.classes.filter(function(c){return CLASSLIST.every(function(x){return x.toLowerCase()!==String(c).toLowerCase();});});
+    o.classes=CLASSLIST.concat(extra); o.cv=1;
+  }
+  o.setupDone=!!o.setupDone; o.v=1;
+  return o;
+}
+var S=defaults(), ready=false, storageOk=true;
+
+/* js/storage.js */
+/* ---------- storage: IndexedDB (falls back to localStorage, then memory) ---------- */
+var DB={db:null};
+function idbOpen(){return new Promise(function(res,rej){try{
+  var rq=indexedDB.open('nest-ledger',1);
+  rq.onupgradeneeded=function(){rq.result.createObjectStore('kv');};
+  rq.onsuccess=function(){res(rq.result);}; rq.onerror=function(){rej(rq.error);}; rq.onblocked=function(){rej(new Error('blocked'));};
+}catch(e){rej(e);}});}
+function idbGet(k){return new Promise(function(res,rej){try{var r=DB.db.transaction('kv','readonly').objectStore('kv').get(k); r.onsuccess=function(){res(r.result);}; r.onerror=function(){rej(r.error);};}catch(e){rej(e);}});}
+function idbSet(k,v){return new Promise(function(res,rej){try{var tx=DB.db.transaction('kv','readwrite'); tx.objectStore('kv').put(v,k); tx.oncomplete=function(){res();}; tx.onerror=function(){rej(tx.error);}; tx.onabort=function(){rej(tx.error||new Error('aborted'));};}catch(e){rej(e);}});}
+function lsOk(){try{localStorage.setItem(KEY+':t','1'); localStorage.removeItem(KEY+':t'); return true;}catch(e){return false;}}
+function legacyState(){try{var r=localStorage.getItem(KEY); return r?migrate(JSON.parse(r)):null;}catch(e){return null;}}
+function save(){
+  if(DB.db){
+    idbSet('state',S).then(function(){if(!storageOk){storageOk=true; render();}},function(){if(storageOk){storageOk=false; render();}});
+    return;
+  }
+  try{localStorage.setItem(KEY,JSON.stringify(S)); storageOk=true;}catch(e){storageOk=false;}
+}
+function boot(){
+  var p;
+  try{p=idbOpen().then(function(db){DB.db=db; return idbGet('state');}).then(function(v){return v?migrate(v):(legacyState()||defaults());});}catch(e){p=Promise.reject(e);}
+  p.catch(function(){DB.db=null; return legacyState()||defaults();}).then(function(o){
+    S=o; ready=true; storageOk=!!DB.db||lsOk(); render(); save();
+    try{if(navigator.storage&&navigator.storage.persist) navigator.storage.persist();}catch(e){}
+  });
+}
+
+var ui={page:'tracker',acct:'all',q:'',rpt:'daily',off:0,mtab:'chars',etask:'ark',ediff:'',macct:'',dlg:null,setup:{sel:{}}};
+var pages=['dashboard','tracker','reports','manage'];
+(function(){var h=(location.hash||'').replace('#',''); if(pages.indexOf(h)>=0) ui.page=h;})();
+
+var WKS=weekStart(new Date()), WK=dateKey(WKS), IDX={};
+function buildIdx(){
+  IDX={};
+  S.entries.forEach(function(e){if(e.week===WK){var k=e.charId+'|'+e.taskId;(IDX[k]=IDX[k]||[]).push(e);}});
+}
+function ents(c,t){return IDX[c+'|'+t]||[];}
+function enabled(){return S.tasks.filter(function(t){return t.enabled;});}
+function taskById(id){return S.tasks.find(function(t){return t.id===id;});}
+function charById(id){return S.chars.find(function(c){return c.id===id;});}
+function acctById(id){return S.accounts.find(function(a){return a.id===id;});}
+function isDone(c,t){return ents(c,t).some(function(e){return !!e.diff;});}
+/* Tasks that can hold several runs per week (ARK, EFM). */
+function isMulti(t){return t.kind==='efm'||!!t.multi;}
+function diffIndex(t,name){return t.difficulties.findIndex(function(d){return d.name===name;});}
+
+function computeRewards(t,diff,tal){
+  var d=t.difficulties.find(function(x){return x.name===diff;}); if(!d) return [];
+  return d.rewards.map(function(r){
+    var o={item:r.item,qty:Number(r.qty)||0}; if(r.qtyText)o.qtyText=r.qtyText;
+    if(t.kind==='efm'&&tal&&r.item==='Gold') o.qty=Math.round(o.qty*(1+S.settings.talisman/100)*10000)/10000;
+    return o;
+  });
+}
+function snap(e,c,t){
+  var a=acctById(c.accountId);
+  e.ign=c.ign; e.acc=a?a.name:''; e.cls=c.cls||''; e.taskName=t.name;
+}
+function toast(m){var t=$('#toast'); if(!t)return; t.textContent=m; t.classList.add('on'); clearTimeout(toast.h); toast.h=setTimeout(function(){t.classList.remove('on');},2400);}
+
+/* js/mutations.js */
+/* ---------- mutations ---------- */
+function ensureClass(name){
+  name=(name||'').trim(); if(!name) return '';
+  var f=S.classes.find(function(c){return c.toLowerCase()===name.toLowerCase();});
+  if(f) return f; S.classes.push(name); return name;
+}
+function upsertSingle(cid,t,diff){
+  var c=charById(cid), list=ents(cid,t.id), e=list[0];
+  if(!diff){ S.entries=S.entries.filter(function(x){return !(x.week===WK&&x.charId===cid&&x.taskId===t.id);}); return; }
+  if(!e){e={id:uid(),week:WK,charId:cid,taskId:t.id,diff:'',talisman:false,ts:Date.now(),rewards:[]}; S.entries.push(e);}
+  var keep=!!e.coinSold, kr=e.coinRate; e.diff=diff; e.rewards=computeRewards(t,diff,false); e.ts=Date.now(); snap(e,c,t);
+  if(keep){delete e.coinSold; e.coinRate=kr; setCoin(e,true);}
+}
+function coinsIn(e){return (e.rewards||[]).reduce(function(s,r){return s+(r.item==='Shiny Hero Coin'?Number(r.qty)||0:0);},0);}
+function coinsOf(e){return e.coinSold||coinsIn(e);}
+function setCoin(e,on){
+  var rate=e.coinRate!=null?e.coinRate:(Number(S.settings.coinRate)||0);
+  var q=e.coinSold||coinsIn(e);
+  e.rewards=(e.rewards||[]).filter(function(r){return !r.coinConv&&r.item!=='Shiny Hero Coin';});
+  if(on&&q>0){e.coinSold=q; e.coinRate=rate; e.rewards.push({item:'Gold',qty:q*rate,coinConv:true});}
+  else{ if(q>0)e.rewards.unshift({item:'Shiny Hero Coin',qty:q}); delete e.coinSold; delete e.coinRate; }
+}
+function coinWeek(){
+  var l=S.entries.filter(function(e){return e.week===WK&&e.diff&&coinsOf(e)>0;}), tot=0, sold=0, n=0;
+  l.forEach(function(e){var q=coinsOf(e); tot+=q; if(e.coinSold){sold+=q; n++;}});
+  return {list:l,total:tot,sold:sold,all:l.length>0&&n===l.length,some:n>0&&n<l.length};
+}
+function mutate(fn){fn(); save(); render();}
+
+/* js/aggregation.js */
+/* ---------- aggregation ---------- */
+function goldOf(rewards){return rewards.reduce(function(s,r){return s+(r.item==='Gold'?Number(r.qty)||0:0);},0);}
+function aggregate(list){
+  var A={clears:0,gold:0,coinGold:0,coins:0,items:{},byTask:{},byChar:{}};
+  list.forEach(function(e){
+    if(!e.diff) return;
+    A.clears++;
+    var g=goldOf(e.rewards||[]); A.gold+=g;
+    if(e.coinSold){A.coins+=e.coinSold; A.coinGold+=e.coinSold*(e.coinRate||0);}
+    (e.rewards||[]).forEach(function(r){
+      var it=A.items[r.item]||(A.items[r.item]={item:r.item,qty:0,ranged:false}); it.qty+=Number(r.qty)||0; if(r.qtyText)it.ranged=true;
+    });
+    var bt=A.byTask[e.taskName||e.taskId]||(A.byTask[e.taskName||e.taskId]={name:e.taskName||e.taskId,n:0,gold:0}); bt.n++; bt.gold+=g;
+    var ck=(e.acc||'')+'|'+(e.ign||'');
+    var bc=A.byChar[ck]||(A.byChar[ck]={ign:e.ign||'Removed character',acc:e.acc||'',n:0,gold:0}); bc.n++; bc.gold+=g;
+  });
+  return A;
+}
+function inRange(a,b){return S.entries.filter(function(e){return e.diff&&e.ts>=a.getTime()&&e.ts<b.getTime();});}
+function period(kind,off){
+  var now=new Date(), s,e,label;
+  if(kind==='daily'){s=new Date(now.getFullYear(),now.getMonth(),now.getDate()+off);e=new Date(s.getFullYear(),s.getMonth(),s.getDate()+1);label=fmtDay(s);}
+  else if(kind==='weekly'){s=addDays(weekStart(now),off*7);e=addDays(s,7);label=fmtShort(s)+' 09:00 to '+fmtShort(e)+' 09:00';}
+  else {s=new Date(now.getFullYear(),now.getMonth()+off,1);e=new Date(s.getFullYear(),s.getMonth()+1,1);label=MON[s.getMonth()]+' '+s.getFullYear();}
+  return {s:s,e:e,label:label};
+}
+function shortLabel(kind,p){return kind==='daily'?DOW[p.s.getDay()]+' '+p.s.getDate():(kind==='weekly'?fmtShort(p.s):MON[p.s.getMonth()]);}
+function series(kind,off,n){
+  var out=[],i;
+  for(i=off-n+1;i<=off;i++){var p=period(kind,i); out.push({label:shortLabel(kind,p),value:aggregate(inRange(p.s,p.e)).gold,cur:i===off});}
+  return out;
+}
+
+/* js/charts.js */
+/* ---------- charts ---------- */
+function barChart(data){
+  var max=0; data.forEach(function(d){if(d.value>max)max=d.value;});
+  if(max<=0) return '<div class="empty" style="padding:28px 12px"><span>No gold recorded in this range yet.</span></div>';
+  var p=Math.pow(10,Math.floor(Math.log10(max))), step=p/2, top=Math.ceil(max/step)*step;
+  var W=560,H=200,pl=46,pr=10,pt=20,pb=28, iw=W-pl-pr, ih=H-pt-pb, band=iw/data.length, bw=Math.min(54,band*.62), s='';
+  [0,top/2,top].forEach(function(t){var y=pt+ih-(t/top)*ih; s+='<line class="g" x1="'+pl+'" x2="'+(W-pr)+'" y1="'+y+'" y2="'+y+'"/><text x="'+(pl-6)+'" y="'+(y+4)+'" text-anchor="end">'+fmtCompact(Math.round(t))+'</text>';});
+  data.forEach(function(d,i){
+    var h=(d.value/top)*ih, x=pl+band*i+(band-bw)/2, y=pt+ih-h;
+    s+='<rect class="b'+(d.cur?' cur':'')+'" x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'" width="'+bw.toFixed(1)+'" height="'+Math.max(h,0).toFixed(1)+'" rx="4"/>';
+    if(d.value>0&&data.length<=8) s+='<text class="vl" x="'+(x+bw/2).toFixed(1)+'" y="'+(y-5).toFixed(1)+'" text-anchor="middle">'+fmtCompact(Math.round(d.value))+'</text>';
+    s+='<text x="'+(x+bw/2).toFixed(1)+'" y="'+(H-8)+'" text-anchor="middle">'+esc(d.label)+'</text>';
+  });
+  return '<svg class="chart" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Gold earned per period">'+s+'</svg>';
+}
+
+/* js/views/shell.js */
+/* ---------- views ---------- */
+function acctOptions(selected,withAll){
+  var o=withAll?'<option value="all"'+(selected==='all'?' selected':'')+'>All accounts</option>':'';
+  return o+S.accounts.map(function(a){return '<option value="'+a.id+'"'+(a.id===selected?' selected':'')+'>'+esc(a.name)+'</option>';}).join('');
+}
+function weekStats(){
+  var ts=enabled(), total=S.chars.length*ts.length, done=0;
+  S.chars.forEach(function(c){ts.forEach(function(t){if(isDone(c.id,t.id))done++;});});
+  var list=S.entries.filter(function(e){return e.week===WK&&e.diff;}), A=aggregate(list);
+  return {total:total,done:done,pct:total?Math.round(done/total*100):0,gold:A.gold,A:A,ts:ts};
+}
+function countdown(){
+  var ms=addDays(WKS,7).getTime()-Date.now(); if(ms<0)ms=0;
+  var m=Math.floor(ms/60000), d=Math.floor(m/1440), h=Math.floor((m%1440)/60), mm=m%60;
+  return d+'d '+h+'h '+pad(mm)+'m';
+}
+function kpi(icon,label,val,extra){return '<div class="kpi"><div class="k">'+ico(icon)+esc(label)+'</div><div class="v num">'+val+'</div>'+(extra||'')+'</div>';}
+function meter(p){return '<div class="meter"><i style="width:'+Math.max(0,Math.min(100,p))+'%"></i></div>';}
+
+function shell(){
+  var titles={dashboard:'Dashboard',tracker:'Weekly Tracker',reports:'Reports',manage:'Manage'};
+  var nav=[['dashboard','dash','Dashboard'],['tracker','list','Weekly Tracker'],['reports','chart','Reports'],['manage','sliders','Manage']];
+  var rail='<aside class="rail"><div class="brand"><span>Task Ledger</span></div>'+
+    '<nav class="nav" aria-label="Sections"><div class="nav-label">Workspace</div>'+
+    nav.map(function(n){return '<button data-act="nav" data-p="'+n[0]+'"'+(ui.page===n[0]?' aria-current="page"':'')+'>'+ico(n[1])+n[2]+'</button>';}).join('')+'</nav>'+
+    '<div class="reset-card"><div class="k">Weekly reset</div><div class="v num" id="cd">'+countdown()+'</div><div class="s">Saturday 09:00, local time. Week of '+fmtShort(WKS)+'.</div></div></aside>';
+  var warn=storageOk?'':'<div class="note">This browser blocked saving. Use Manage, Settings &amp; data, Export to keep a copy.</div>';
+  return '<div class="shell">'+rail+'<main class="work"><header class="top"><div><div class="crumb">Task Ledger / '+titles[ui.page]+'</div><h1>'+titles[ui.page]+'</h1></div><div class="top-actions">'+topActions()+'</div></header>'+warn+'<div class="page">'+pageHtml()+'</div></main></div>';
+}
+function topActions(){
+  if(ui.page==='tracker') return '<button class="btn" data-act="nav" data-p="manage">'+ico('plus')+'Add character</button>';
+  return '';
+}
+function pageHtml(){
+  if(ui.page==='dashboard') return dashboard();
+  if(ui.page==='reports') return reports();
+  if(ui.page==='manage') return manage();
+  return tracker();
+}
+
+/* js/views/tracker.js */
+/* --- tracker --- */
+function trackerStrip(){
+  var st=weekStats();
+  return '<div class="kpis">'+
+    kpi('target','Done this week',st.done+'<small>of '+st.total+'</small>',meter(st.pct))+
+    kpi('coin','Gold this week',fmtGold(st.gold,false),(st.A.coins?'<div class="sub num">incl. '+fmtGold(st.A.coinGold,false)+' from '+st.A.coins+' Shiny Hero Coin'+(st.A.coins===1?'':'s')+'</div>':''))+
+    kpi('users','Characters',S.chars.length+'<small>'+S.accounts.length+' account'+(S.accounts.length===1?'':'s')+'</small>')+
+    kpi('clock','Resets in','<span id="cd2">'+countdown()+'</span>')+'</div>';
+}
+function tracker(){
+  var h=trackerStrip();
+  if(!S.accounts.length||!S.chars.length){
+    return h+'<div class="card empty"><h3>Add your first character</h3><span>Characters belong to an account. Add an account, then its characters.</span>'+quickAddForm()+'</div>';
+  }
+  if(!enabled().length){
+    return h+'<div class="card empty"><h3>No weekly tasks selected</h3><span>Turn on the tasks you want to track.</span><button class="btn primary" data-act="nav" data-p="manage" data-t="tasks">Choose tasks</button></div>';
+  }
+  h+='<div class="toolbar"><label class="field"><span>Account</span><select class="sel" id="f-acct" data-act="f-acct">'+acctOptions(ui.acct,true)+'</select></label>'+
+     '<label class="field"><span>Find character</span><input class="in" id="f-q" type="search" placeholder="IGN or class" value="'+esc(ui.q)+'" data-act="f-q"></label></div>';
+  return h+'<div class="gridwrap" id="gridwrap">'+gridHtml()+'</div>';
+}
+function quickAddForm(){
+  return '<form data-form="quick-add" class="form-row" style="width:100%;max-width:640px;text-align:left">'+
+    '<label class="field"><span>Account name</span><input class="in" id="qa-acct" name="acct" required value="'+esc(S.accounts[0]?S.accounts[0].name:'')+'"></label>'+
+    '<label class="field"><span>IGN</span><input class="in" id="qa-ign" name="ign" required></label>'+
+    '<label class="field"><span>Class</span>'+classSelect('qa-cls','cls','',true)+'</label>'+
+    '<button class="btn primary" type="submit">'+ico('plus')+'Add</button></form>';
+}
+/* Class dropdown. A character's saved class is kept as an option even if it is no longer in the list. */
+function classOpts(cur){
+  var has=!cur||S.classes.some(function(c){return c===cur;});
+  return '<option value="">Select class</option>'+(has?'':'<option value="'+esc(cur)+'" selected>'+esc(cur)+'</option>')+
+    S.classes.map(function(c){return '<option value="'+esc(c)+'"'+(c===cur?' selected':'')+'>'+esc(c)+'</option>';}).join('');
+}
+function classSelect(id,name,cur,required,extra){
+  return '<select class="sel'+(extra&&extra.sm?' sm':'')+'" id="'+id+'"'+(name?' name="'+name+'"':'')+(required?' required':'')+(extra&&extra.attrs?' '+extra.attrs:'')+' aria-label="Class">'+classOpts(cur)+'</select>';
+}
+
+function gridHtml(){
+  var ts=enabled(), q=ui.q.trim().toLowerCase(), cols=ts.length+1;
+  var head='<thead><tr><th class="sticky">Character</th>'+ts.map(function(t){
+    var sub=t.kind==='done'?'Done':(isMulti(t)?'Runs':(t.kind==='nm'?'Highest':'Difficulty'));
+    return '<th><span class="tn">'+esc(t.name)+'</span>'+sub+'</th>';}).join('')+'</tr></thead>';
+  var body='', any=false;
+  S.accounts.forEach(function(a){
+    if(ui.acct!=='all'&&ui.acct!==a.id) return;
+    var cs=S.chars.filter(function(c){return c.accountId===a.id&&(!q||c.ign.toLowerCase().indexOf(q)>=0||(c.cls||'').toLowerCase().indexOf(q)>=0);});
+    if(!cs.length) return; any=true;
+    var done=0; cs.forEach(function(c){ts.forEach(function(t){if(isDone(c.id,t.id))done++;});});
+    body+='<tr class="acct"><td class="sticky">'+esc(a.name)+'</td><td colspan="'+ts.length+'"><span class="num">'+done+' / '+cs.length*ts.length+' done</span></td></tr>';
+    cs.forEach(function(c){
+      var n=0; ts.forEach(function(t){if(isDone(c.id,t.id))n++;});
+      var p=ts.length?Math.round(n/ts.length*100):0;
+      body+='<tr><td class="sticky"><div class="who"><b>'+esc(c.ign)+'</b><span class="cls">'+esc(c.cls||'No class')+' &middot; <span class="num">'+n+'/'+ts.length+'</span></span>'+meter(p)+'</div></td>'+
+        ts.map(function(t){return cell(c,t);}).join('')+'</tr>';
+    });
+  });
+  if(!any) body='<tr><td colspan="'+cols+'"><div class="empty">No characters match this filter.</div></td></tr>';
+  return '<table class="grid">'+head+'<tbody>'+body+'</tbody></table>';
+}
+function diffOpts(t,cur,blank){
+  var legacy=(cur&&!t.difficulties.some(function(d){return d.name===cur;}))?'<option value="'+esc(cur)+'" selected>'+esc(cur)+' (old)</option>':'';
+  return '<option value="">'+blank+'</option>'+legacy+t.difficulties.map(function(d){return '<option value="'+esc(d.name)+'"'+(d.name===cur?' selected':'')+'>'+esc(d.name)+'</option>';}).join('');
+}
+function cell(c,t){
+  var es=ents(c.id,t.id);
+  if(t.kind==='done'){
+    var on=es.some(function(e){return !!e.diff;});
+    return '<td><button class="pill'+(on?' ok':'')+'" data-act="toggle-done" data-c="'+c.id+'" data-t="'+t.id+'" aria-pressed="'+on+'">'+(on?ico('check')+'Done':'Not yet')+'</button></td>';
+  }
+  if(isMulti(t)){
+    var gold=0, hasTal=t.kind==='efm';
+    var runs=es.map(function(e,i){
+      gold+=goldOf(e.rewards||[]);
+      return '<div class="run"><span class="rn num">#'+(i+1)+'</span><select class="sel sm state'+(e.diff?' set':'')+'" id="rd-'+e.id+'" data-act="run-diff" data-e="'+e.id+'" aria-label="Run '+(i+1)+' difficulty">'+diffOpts(t,e.diff,'Not yet')+'</select>'+
+        (hasTal?'<label class="tal" title="Gold +'+S.settings.talisman+'% from talisman"><input type="checkbox" id="rt-'+e.id+'" data-act="run-tal" data-e="'+e.id+'"'+(e.talisman?' checked':'')+'>+'+S.settings.talisman+'%</label>':'')+
+        '<button class="ib" data-act="run-del" data-e="'+e.id+'" aria-label="Remove run '+(i+1)+'">'+ico('x')+'</button></div>';
+    }).join('');
+    return '<td><div class="runs">'+runs+'</div><div style="display:flex;gap:10px;align-items:center"><button class="link" data-act="run-add" data-c="'+c.id+'" data-t="'+t.id+'">'+ico('plus')+'Add run</button>'+(gold>0?'<span class="gold">'+fmtGold(gold,false)+'</span>':'')+'</div></td>';
+  }
+  var cur=es[0]&&es[0].diff||'';
+  return '<td><select class="sel state'+(cur?' set':'')+'" id="d-'+c.id+'-'+t.id+'" data-act="set-diff" data-c="'+c.id+'" data-t="'+t.id+'" aria-label="'+esc(t.name)+' for '+esc(c.ign)+'">'+diffOpts(t,cur,'Not yet')+'</select></td>';
+}
+
+/* js/views/dashboard.js */
+/* --- dashboard --- */
+function nmCard(){
+  var t=taskById('nm'); if(!t||!t.enabled) return '';
+  var es=S.entries.filter(function(e){return e.week===WK&&e.taskId==='nm'&&e.diff&&diffIndex(t,e.diff)>=0;}), top=-1;
+  es.forEach(function(e){var i=diffIndex(t,e.diff); if(i>top)top=i;});
+  var head='<div class="card-h"><h2>NM highest clear</h2><span class="sub">This week</span></div>';
+  if(top<0) return '<section class="card" style="margin-bottom:12px">'+head+'<div class="card-b sub">No NM clears recorded this week.</div></section>';
+  var w=es.filter(function(e){return diffIndex(t,e.diff)===top;}), name=t.difficulties[top].name;
+  var rw=(w[0].rewards&&w[0].rewards.length)?w[0].rewards:computeRewards(t,name,false);
+  var who=w.map(function(e){return '<span class="badge" style="font-size:12.5px"><b>'+esc(e.ign||'Removed character')+'</b>'+(e.acc?' &middot; '+esc(e.acc):'')+'</span>';}).join(' ');
+  var items=rw.map(function(r){return '<span class="badge" style="font-size:12.5px">'+esc(r.item)+' <b class="num">'+esc(fmtQty(r))+'</b></span>';}).join(' ');
+  return '<section class="card" style="margin-bottom:12px">'+head+'<div class="card-b" style="display:grid;gap:12px"><div><div class="sub">Highest floor cleared</div><div style="font-family:var(--f-display);font-size:20px;font-weight:600">'+esc(name)+'</div></div>'+
+    '<div><div class="sub" style="margin-bottom:6px">Cleared by</div><div class="chips">'+who+'</div></div>'+
+    '<div><div class="sub" style="margin-bottom:6px">Rewards</div><div class="chips">'+(items||'<span class="sub">No rewards set for this floor.</span>')+'</div></div></div></section>';
+}
+function coinCtl(st){
+  var w=coinWeek(); if(!w.total) return '';
+  var rate=Number(S.settings.coinRate)||0;
+  return '<label class="coin" title="Convert all Shiny Hero Coins this week to gold at '+rate.toLocaleString('en-US')+'g each"><span>Shiny Hero Coins</span><b class="num">&times;'+w.total+'</b><input type="checkbox" id="cn-all" data-act="coin-all"'+(w.all?' checked':'')+(w.some?' data-partial="1"':'')+'></label>'+
+    (w.sold?'<div class="sub num">incl. '+fmtGold(st.A.coinGold,false)+' from '+w.sold+' coin'+(w.sold===1?'':'s')+' converted</div>':'<div class="sub num">Worth '+fmtGold(w.total*rate,false)+' if converted</div>');
+}
+function dashboard(){
+  var st=weekStats(), h='<div class="kpis">'+
+    kpi('target','Weekly progress',st.pct+'<small>%</small>',meter(st.pct))+
+    kpi('check','Clears this week',st.A.clears+'<small>'+st.done+' of '+st.total+' tasks</small>')+
+    kpi('coin','Gold this week',fmtGold(st.gold,false),coinCtl(st))+
+    kpi('clock','Resets in','<span id="cd2">'+countdown()+'</span>','<div class="sub">Saturday 09:00</div>')+'</div>';
+  if(!S.chars.length) return h+'<div class="card empty"><h3>Nothing to show yet</h3><span>Add characters and tick off tasks. Totals, gold and trends appear here.</span><button class="btn primary" data-act="nav" data-p="tracker">Open tracker</button></div>';
+  var taskBars=st.ts.map(function(t){
+    var n=S.chars.filter(function(c){return isDone(c.id,t.id);}).length, p=S.chars.length?Math.round(n/S.chars.length*100):0;
+    return '<div class="hbar"><span class="t" title="'+esc(t.name)+'">'+esc(t.name)+'</span>'+meter(p)+'<span class="num">'+n+'/'+S.chars.length+'</span></div>';
+  }).join('')||'<div class="sub">No tasks selected.</div>';
+  var acctRows=S.accounts.map(function(a){
+    var cs=S.chars.filter(function(c){return c.accountId===a.id;}), tot=cs.length*st.ts.length, d=0;
+    cs.forEach(function(c){st.ts.forEach(function(t){if(isDone(c.id,t.id))d++;});});
+    var p=tot?Math.round(d/tot*100):0;
+    return '<div class="hbar"><span class="t" title="'+esc(a.name)+'">'+esc(a.name)+'</span>'+meter(p)+'<span class="num">'+d+'/'+tot+'</span></div>';
+  }).join('');
+  var recent=S.entries.filter(function(e){return e.diff;}).sort(function(a,b){return b.ts-a.ts;}).slice(0,8);
+  var feed=recent.length?'<ul>'+recent.map(function(e){var g=goldOf(e.rewards||[]);
+    return '<li><div class="m"><b>'+esc(e.ign||'Removed character')+'</b> cleared '+esc(e.taskName||e.taskId)+'<div>'+(e.diff==='Done'?'':esc(e.diff)+' &middot; ')+esc(e.acc||'')+'</div></div><div style="text-align:right;flex:none">'+(g>0?'<span class="gold">'+fmtGold(g,false)+'</span><br>':'')+'<span class="sub">'+rel(e.ts)+'</span></div></li>';}).join('')+'</ul>':'<div class="sub">No clears recorded yet.</div>';
+  return h+nmCard()+'<div class="cols"><div class="stack">'+
+    '<section class="card"><div class="card-h"><h2>Gold per game week</h2><span class="sub">Last 8 weeks</span></div><div class="card-b">'+barChart(series('weekly',0,8))+'</div></section>'+
+    '<section class="card"><div class="card-h"><h2>Recent activity</h2></div><div class="card-b feed">'+feed+'</div></section></div>'+
+    '<div class="stack"><section class="card"><div class="card-h"><h2>Clears by task</h2><span class="sub">Characters done</span></div><div class="card-b bars">'+taskBars+'</div></section>'+
+    '<section class="card"><div class="card-h"><h2>Account progress</h2></div><div class="card-b bars">'+acctRows+'</div></section></div></div>';
+}
+
+/* js/views/reports.js */
+/* --- reports --- */
+function arkMats(list){
+  var M={jade:0,pouch:0,byChar:{}};
+  list.forEach(function(e){
+    if(!e.diff||e.taskId!=='ark') return;
+    var j=0,p=0;
+    (e.rewards||[]).forEach(function(r){var q=Number(r.qty)||0; if(/jade fragment/i.test(r.item)) j+=q; else if(/pouch/i.test(r.item)) p+=q;});
+    M.jade+=j; M.pouch+=p;
+    var k=(e.acc||'')+'|'+(e.ign||''), c=M.byChar[k]||(M.byChar[k]={ign:e.ign||'Removed character',acc:e.acc||'',n:0,jade:0,pouch:0});
+    c.n++; c.jade+=j; c.pouch+=p;
+  });
+  return M;
+}
+function arkCard(p){
+  var t=taskById('ark'), cur=arkMats(inRange(p.s,p.e)), all=arkMats(S.entries);
+  if(!t||(!t.enabled&&!all.jade&&!all.pouch)) return '';
+  var rows=Object.keys(cur.byChar).map(function(k){return cur.byChar[k];}).sort(function(a,b){return (b.jade+b.pouch)-(a.jade+a.pouch);});
+  var n=function(v){return v.toLocaleString('en-US');};
+  var stat=function(label,v,a){return '<div class="kpi"><div class="k">'+esc(label)+'</div><div class="v num">'+n(v)+'</div><div class="sub num">All time '+n(a)+'</div></div>';};
+  var tbl=rows.length?'<div class="scroll"><table class="tbl"><thead><tr><th>Character</th><th>Account</th><th class="r">Jade fragments</th><th class="r">Pouches</th></tr></thead><tbody>'+rows.map(function(c){return '<tr><td>'+esc(c.ign)+'</td><td>'+esc(c.acc)+'</td><td class="r num">'+n(c.jade)+'</td><td class="r num">'+n(c.pouch)+'</td></tr>';}).join('')+'</tbody></table></div>':'<div class="empty" style="padding:18px">No ARK clears in this period.</div>';
+  return '<section class="card"><div class="card-h"><h2>ARK materials</h2><span class="sub">Jade fragments and pouches from weekly chests</span></div><div class="card-b" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px">'+stat('Jade fragments',cur.jade,all.jade)+stat('Pouches',cur.pouch,all.pouch)+'</div>'+tbl+'</section>';
+}
+function reports(){
+  var kind=ui.rpt, p=period(kind,ui.off), A=aggregate(inRange(p.s,p.e));
+  var n={daily:7,weekly:8,monthly:6}[kind];
+  var items=Object.keys(A.items).map(function(k){return A.items[k];}).sort(function(a,b){if(a.item==='Gold')return -1;if(b.item==='Gold')return 1;return b.qty-a.qty;});
+  var anyRanged=items.some(function(i){return i.ranged;});
+  var itemTbl=items.length?'<div class="scroll"><table class="tbl"><thead><tr><th>Reward</th><th class="r">Total</th></tr></thead><tbody>'+items.map(function(i){
+    return '<tr><td>'+(i.item==='Gold'?'<span class="gold">Gold</span>':esc(i.item))+'</td><td class="r num">'+(i.item==='Gold'?fmtGold(i.qty,true):i.qty.toLocaleString('en-US')+(i.ranged?'*':''))+'</td></tr>';}).join('')+'</tbody></table></div>'+(anyRanged?'<div class="card-b sub">* Items with a range are counted at their lower value.</div>':''):'<div class="empty">No rewards in this period.</div>';
+  var tasks=Object.keys(A.byTask).map(function(k){return A.byTask[k];}).sort(function(a,b){return b.n-a.n;});
+  var taskTbl=tasks.length?'<div class="scroll"><table class="tbl"><thead><tr><th>Task</th><th class="r">Clears</th><th class="r">Gold</th></tr></thead><tbody>'+tasks.map(function(t){return '<tr><td>'+esc(t.name)+'</td><td class="r num">'+t.n+'</td><td class="r num">'+(t.gold?fmtGold(t.gold,false):'-')+'</td></tr>';}).join('')+'</tbody></table></div>':'<div class="empty">No clears in this period.</div>';
+  var chars=Object.keys(A.byChar).map(function(k){return A.byChar[k];}).sort(function(a,b){return b.n-a.n;});
+  var charTbl=chars.length?'<div class="scroll"><table class="tbl"><thead><tr><th>Character</th><th>Account</th><th class="r">Clears</th><th class="r">Gold</th></tr></thead><tbody>'+chars.map(function(c){return '<tr><td>'+esc(c.ign)+'</td><td>'+esc(c.acc)+'</td><td class="r num">'+c.n+'</td><td class="r num">'+(c.gold?fmtGold(c.gold,false):'-')+'</td></tr>';}).join('')+'</tbody></table></div>':'<div class="empty">No clears in this period.</div>';
+  return '<div class="toolbar" style="justify-content:space-between"><div class="seg" role="group" aria-label="Report period">'+
+    ['daily','weekly','monthly'].map(function(k){return '<button data-act="rpt-kind" data-k="'+k+'" aria-pressed="'+(kind===k)+'">'+k[0].toUpperCase()+k.slice(1)+'</button>';}).join('')+'</div>'+
+    '<div class="toolbar"><button class="ib" data-act="rpt-prev" aria-label="Previous period">'+ico('left')+'</button><b class="num" style="min-width:150px;text-align:center">'+esc(p.label)+'</b><button class="ib" data-act="rpt-next" aria-label="Next period"'+(ui.off>=0?' disabled style="opacity:.3;cursor:default"':'')+'>'+ico('right')+'</button></div></div>'+
+    '<div class="kpis">'+kpi('check','Clears',A.clears)+kpi('coin','Gold earned',fmtGold(A.gold,false),'<div class="sub num">'+fmtGold(A.gold,true)+'</div>')+kpi('list','Reward types',items.length)+kpi('users','Characters active',chars.length)+'</div>'+
+    arkCard(p)+'<section class="card"><div class="card-h"><h2>Gold trend</h2><span class="sub">'+(kind==='daily'?'Last 7 days':(kind==='weekly'?'Last 8 game weeks':'Last 6 months'))+'</span></div><div class="card-b">'+barChart(series(kind,ui.off,n))+'</div></section>'+
+    '<div class="cols"><section class="card"><div class="card-h"><h2>Rewards earned</h2></div>'+itemTbl+'</section><div class="stack"><section class="card"><div class="card-h"><h2>By task</h2></div>'+taskTbl+'</section><section class="card"><div class="card-h"><h2>By character</h2></div>'+charTbl+'</section></div></div>';
+}
+
+/* js/views/manage.js */
+/* --- manage --- */
+function manage(){
+  var tabs=[['accts','Accounts'],['chars','Characters'],['classes','Classes'],['tasks','Tasks &amp; rewards'],['data','Settings &amp; data']];
+  return '<div class="card"><div class="tabs" role="tablist">'+tabs.map(function(t){return '<button role="tab" data-act="mtab" data-k="'+t[0]+'" aria-selected="'+(ui.mtab===t[0])+'">'+t[1]+'</button>';}).join('')+'</div><div class="card-b">'+
+    (ui.mtab==='accts'?mAccts():ui.mtab==='chars'?mChars():ui.mtab==='classes'?mClasses():ui.mtab==='tasks'?mTasks():mData())+'</div></div>';
+}
+function macct(){
+  if(!S.accounts.length) return '';
+  if(!S.accounts.some(function(a){return a.id===ui.macct;})) ui.macct=S.accounts[0].id;
+  return ui.macct;
+}
+function acctPicker(){
+  return '<label class="field" style="max-width:340px;margin-bottom:14px"><span>Account</span><select class="sel" id="m-acctsel" data-act="m-acct" aria-label="Choose account">'+acctOptions(macct(),false)+'</select></label>';
+}
+function mAccts(){
+  var h='<form data-form="acct-add" class="form-row" style="margin-bottom:16px"><label class="field"><span>New account</span><input class="in" id="m-acct" name="name" placeholder="Account name" required></label><button class="btn primary" type="submit">'+ico('plus')+'Add account</button></form>';
+  if(!S.accounts.length) return h+'<div class="empty"><h3>No accounts yet</h3><span>Create an account, then add its characters in the Characters tab.</span></div>';
+  var a=acctById(macct()), cs=S.chars.filter(function(c){return c.accountId===a.id;});
+  return h+acctPicker()+'<section class="card acct-card"><div class="card-h"><div class="toolbar"><input class="in" id="an-'+a.id+'" value="'+esc(a.name)+'" data-act="acct-ren" data-id="'+a.id+'" aria-label="Account name"><span class="badge">'+cs.length+' character'+(cs.length===1?'':'s')+'</span></div>'+
+    '<button class="btn sm danger" data-act="acct-del" data-id="'+a.id+'" data-arm="1">'+ico('trash')+'Delete account</button></div>'+
+    '<div class="card-b"><div class="sub">'+(cs.length?'Characters: '+cs.map(function(c){return esc(c.ign);}).join(', '):'No characters on this account yet.')+'</div>'+
+    '<div style="margin-top:10px"><button class="btn sm" data-act="mtab" data-k="chars">Manage characters</button></div></div></section>'+
+    '<div class="sub">Deleting an account also deletes its characters. Past rewards stay in the reports.</div>';
+}
+function mChars(){
+  if(!S.accounts.length) return '<div class="empty"><h3>No accounts yet</h3><span>Create an account first, then add its characters.</span><button class="btn primary" data-act="mtab" data-k="accts">Go to Accounts</button></div>';
+  var a=acctById(macct()), cs=S.chars.filter(function(c){return c.accountId===a.id;});
+  var rows=cs.map(function(c){
+    return '<tr><td><input class="in sm" id="ci-'+c.id+'" value="'+esc(c.ign)+'" data-act="char-ign" data-id="'+c.id+'" aria-label="IGN"></td>'+
+      '<td>'+classSelect('cc-'+c.id,'',c.cls||'',false,{sm:true,attrs:'data-act="char-cls" data-id="'+c.id+'"'})+'</td>'+
+      '<td><select class="sel sm" id="ca-'+c.id+'" data-act="char-acct" data-id="'+c.id+'" aria-label="Move to account">'+acctOptions(c.accountId,false)+'</select></td>'+
+      '<td class="r"><button class="ib" data-act="char-del" data-id="'+c.id+'" data-arm="1" aria-label="Delete character">'+ico('trash')+'</button></td></tr>';}).join('');
+  return acctPicker()+'<section class="card acct-card"><div class="card-h"><h2>'+esc(a.name)+'</h2><span class="badge">'+cs.length+' character'+(cs.length===1?'':'s')+'</span></div>'+
+    (cs.length?'<div class="scroll"><table class="tbl"><thead><tr><th>IGN</th><th>Class</th><th>Account</th><th></th></tr></thead><tbody>'+rows+'</tbody></table></div>':'<div class="empty" style="padding:18px">No characters on this account.</div>')+
+    '<form data-form="char-add" data-id="'+a.id+'" class="form-row card-b" style="border-top:1px solid var(--line)"><label class="field"><span>IGN</span><input class="in" id="nc-'+a.id+'" name="ign" required></label><label class="field"><span>Class</span>'+classSelect('nk-'+a.id,'cls','',true)+'</label><button class="btn sm primary" type="submit">'+ico('plus')+'Add character</button></form></section>'+
+    '<div class="sub">Deleting a character keeps its past rewards in the reports. Use the Account column to move a character to another account.</div>';
+}
+function mClasses(){
+  var h=transferBar('classes')+'<form data-form="cls-add" class="form-row" style="margin-bottom:16px"><label class="field"><span>New class</span><input class="in" id="m-cls" name="name" required></label><button class="btn primary" type="submit">'+ico('plus')+'Add class</button></form>';
+  if(!S.classes.length) return h+'<div class="empty"><h3>No classes yet</h3><span>Add a class above, or import a list.</span></div>';
+  return h+'<div class="scroll"><table class="tbl"><thead><tr><th>Class</th><th class="r">Characters</th><th></th></tr></thead><tbody>'+S.classes.map(function(c,i){
+    var n=S.chars.filter(function(x){return x.cls===c;}).length;
+    return '<tr><td><input class="in sm" id="cl-'+i+'" value="'+esc(c)+'" data-act="cls-ren" data-old="'+esc(c)+'" aria-label="Class name"></td><td class="r num">'+n+'</td><td class="r"><button class="ib" data-act="cls-del" data-old="'+esc(c)+'" data-arm="1" aria-label="Delete class">'+ico('trash')+'</button></td></tr>';}).join('')+'</tbody></table></div>';
+}
+function mTasks(){
+  var t=taskById(ui.etask)||S.tasks[0]; ui.etask=t.id;
+  if(!t.difficulties.some(function(d){return d.name===ui.ediff;})) ui.ediff=t.difficulties[0]?t.difficulties[0].name:'';
+  var d=t.difficulties.find(function(x){return x.name===ui.ediff;});
+  var list=S.tasks.map(function(x){
+    return '<div class="trow" role="button" tabindex="0" data-act="task-pick" data-id="'+x.id+'" aria-current="'+(x.id===t.id)+'"><div class="n"><b>'+esc(x.name)+'</b><span>'+esc(x.sub||(x.kind==='done'?'Done only':'Difficulty'))+'</span></div><label class="switch" title="Track this task"><input type="checkbox" id="en-'+x.id+'" data-act="task-en" data-id="'+x.id+'"'+(x.enabled?' checked':'')+' aria-label="Track '+esc(x.name)+'"></label></div>';}).join('');
+  var rows=d?d.rewards.map(function(r,i){
+    return '<tr><td><input class="in sm" id="ri-'+i+'" value="'+esc(r.item)+'" data-act="rew-item" data-i="'+i+'" aria-label="Reward item"></td>'+
+      '<td><input class="in sm num" id="rq-'+i+'" type="number" step="any" min="0" value="'+esc(r.qty)+'" data-act="rew-qty" data-i="'+i+'" style="width:110px" aria-label="Quantity"></td>'+
+      '<td><input class="in sm" id="rx-'+i+'" value="'+esc(r.qtyText||'')+'" placeholder="optional, e.g. 1~2" data-act="rew-txt" data-i="'+i+'" style="width:140px" aria-label="Display text"></td>'+
+      '<td class="r"><button class="ib" data-act="rew-del" data-i="'+i+'" aria-label="Delete reward">'+ico('trash')+'</button></td></tr>';}).join(''):'';
+  var diffCtl=t.kind==='done'?'':
+    '<div class="form-row" style="margin-bottom:12px"><label class="field"><span>Difficulty</span><select class="sel" id="e-diff" data-act="diff-pick">'+t.difficulties.map(function(x){return '<option value="'+esc(x.name)+'"'+(x.name===ui.ediff?' selected':'')+'>'+esc(x.name)+'</option>';}).join('')+'</select></label>'+
+    '<label class="field"><span>Rename</span><input class="in" id="e-ren" value="'+esc(ui.ediff)+'" data-act="diff-ren"></label>'+
+    '<label class="field"><span>Copy rewards from</span><select class="sel" id="e-copy" data-act="diff-copy"><option value="">Choose difficulty</option>'+t.difficulties.filter(function(x){return x.name!==ui.ediff;}).map(function(x){return '<option value="'+esc(x.name)+'">'+esc(x.name)+'</option>';}).join('')+'</select></label>'+
+    '<button class="btn sm danger" data-act="diff-del" data-arm="1">'+ico('trash')+'Delete difficulty</button></div>';
+  var addDiff=t.kind==='done'?'':'<form data-form="diff-add" class="form-row" style="margin-top:14px;border-top:1px solid var(--line);padding-top:14px"><label class="field"><span>New difficulty</span><input class="in" id="e-newd" name="name" required></label><button class="btn sm" type="submit">'+ico('plus')+'Add difficulty</button></form>';
+  var tal=t.kind==='efm'?'<div class="sub" style="margin-bottom:10px">Runs with the talisman box ticked earn Gold +'+S.settings.talisman+'%. Change the percentage in Settings &amp; data.</div>':'';
+  return transferBar('rewards')+'<div class="editor"><div class="card" style="background:var(--surface-2)"><div class="tasklist">'+list+'</div></div><div class="card"><div class="card-h"><h2>'+esc(t.name)+' rewards</h2><button class="btn sm danger" data-act="task-restore" data-arm="1">Restore patch defaults</button></div><div class="card-b">'+tal+diffCtl+
+    (d?'<div class="scroll"><table class="tbl"><thead><tr><th>Reward</th><th>Qty</th><th>Display text</th><th></th></tr></thead><tbody>'+(rows||'<tr><td colspan="4" class="sub">No rewards set for '+esc(d.name)+'. Add the first one below.</td></tr>')+'</tbody></table></div><div style="margin-top:12px"><button class="btn sm" data-act="rew-add">'+ico('plus')+'Add reward</button></div>':'<div class="empty">No difficulties. Add one below.</div>')+addDiff+
+    '<div class="sub" style="margin-top:12px">Gold is entered in gold units. Use decimals for silver and copper, for example 28333.2775 is 28,333g 27s 75c. Changes apply to new clears. Past clears keep the rewards they were saved with.</div></div></div></div>';
+}
+function mData(){
+  return '<div class="stack" style="max-width:720px">'+
+    '<section class="card"><div class="card-h"><h2>Talisman bonus</h2></div><div class="card-b form-row"><label class="field"><span>EFM gold bonus (%)</span><input class="in" id="s-tal" type="number" min="0" step="1" value="'+S.settings.talisman+'" data-act="set-tal"></label></div></section>'+
+    '<section class="card"><div class="card-h"><h2>Shiny Hero Coin</h2></div><div class="card-b form-row"><label class="field"><span>Gold per Shiny Hero Coin</span><input class="in" id="s-coin" type="number" min="0" step="1" value="'+S.settings.coinRate+'" data-act="set-coin"></label><div class="sub" style="align-self:end">Used when you tick the Shiny Hero Coin box in the tracker. Coins already converted keep the rate they were converted at.</div></div></section>'+
+    '<section class="card"><div class="card-h"><h2>Backup</h2></div><div class="card-b" style="display:grid;gap:12px"><div class="sub">Data is saved in this browser (IndexedDB). Export a JSON file to keep a copy or move to another device.</div>'+
+    '<div class="toolbar"><button class="btn" data-act="export">'+ico('down')+'Export JSON</button><button class="btn" data-act="copy-json">Copy JSON</button><label class="btn" for="imp-file" style="cursor:pointer">'+ico('up')+'Import file</label><input id="imp-file" type="file" accept=".json,application/json" data-act="import-file" hidden></div>'+
+    '<label class="field"><span>Or paste exported JSON</span><textarea class="in" id="imp-text" rows="4" style="font-family:monospace;font-size:12px"></textarea></label><div><button class="btn sm" data-act="import-text">Import pasted JSON</button></div></div></section>'+
+    '<section class="card"><div class="card-h"><h2>Rewards table &amp; classes</h2></div><div class="card-b" style="display:grid;gap:12px"><div class="sub">Export as JSON or CSV to edit in a spreadsheet or share, then import the file back. Importing a rewards file replaces the floors and rewards of every task in the file that matches by task id or name. Export a backup first if you are unsure.</div>'+transferBar('rewards')+transferBar('classes')+'</div></section>'+
+    '<section class="card"><div class="card-h"><h2>Danger zone</h2></div><div class="card-b toolbar"><button class="btn danger" data-act="clear-hist" data-arm="1">Clear reward history</button><button class="btn danger" data-act="reset-all" data-arm="1">Reset everything</button></div></section></div>';
+}
+
+/* js/views/setup.js */
+/* --- first-run dialog --- */
+function setupHtml(){
+  var diff=S.tasks.filter(function(t){return t.kind!=='done';}), done=S.tasks.filter(function(t){return t.kind==='done';});
+  function chip(t){return '<label class="chip"><input type="checkbox" id="su-'+t.id+'" data-act="su-pick" data-id="'+t.id+'"'+(ui.setup.sel[t.id]?' checked':'')+'>'+esc(t.name)+'</label>';}
+  var n=Object.keys(ui.setup.sel).filter(function(k){return ui.setup.sel[k];}).length;
+  return '<div class="scrim"><form class="dlg" data-form="setup" role="dialog" aria-modal="true" aria-labelledby="su-h"><div><h2 id="su-h">Choose your weekly tasks</h2><p class="sub" style="margin:6px 0 0">Pick what you want to track each week. You can change this later in Manage.</p></div>'+
+    '<div class="grp"><h3>Tracked by difficulty</h3><div class="chips">'+diff.map(chip).join('')+'</div></div>'+
+    '<div class="grp"><h3>Tracked as done</h3><div class="chips">'+done.map(chip).join('')+'</div></div>'+
+    '<div class="toolbar"><button type="button" class="btn sm" data-act="su-all">Select all</button><button type="button" class="btn sm" data-act="su-none">Clear</button></div>'+
+    '<div class="grp"><h3>First account (optional)</h3><div class="form-row"><label class="field"><span>Account</span><input class="in" id="su-acct" name="acct"></label><label class="field"><span>IGN</span><input class="in" id="su-ign" name="ign"></label><label class="field"><span>Class</span>'+classSelect('su-cls','cls','',false)+'</label></div></div>'+
+    '<div class="dlg-f"><span class="sub num" id="su-n">'+n+' selected</span><button class="btn primary" type="submit" id="su-go"'+(n?'':' disabled')+'>Start tracking</button></div></form></div>';
+}
+
+/* js/render.js */
+/* ---------- render ---------- */
+function render(){
+  if(!ready) return;
+  WKS=weekStart(new Date()); WK=dateKey(WKS); buildIdx();
+  var gw=$('#gridwrap'), sl=gw?gw.scrollLeft:0, sy=window.scrollY;
+  $('#app').innerHTML=shell()+(S.setupDone?'':setupHtml())+dlgHtml();
+  if(ui.dlg&&ui.dlg.sel){var bt=$('#bk-text'); if(bt){bt.focus(); bt.select();} ui.dlg.sel=false;}
+  Array.prototype.forEach.call(document.querySelectorAll('input[data-partial]'),function(i){i.indeterminate=true;});
+  var g2=$('#gridwrap'); if(g2) g2.scrollLeft=sl;
+  window.scrollTo(0,sy);
+}
+function refreshGrid(){var g=$('#gridwrap'); if(g){var sl=g.scrollLeft; g.innerHTML=gridHtml(); g.scrollLeft=sl;}}
+
+/* js/events.js */
+/* ---------- events ---------- */
+function armed(b){
+  if(!b.dataset.arm) return true;
+  if(b.dataset.armed) return true;
+  b.dataset.armed='1'; b.dataset.orig=b.innerHTML; b.classList.add('armed'); b.textContent='Confirm?';
+  setTimeout(function(){if(b.isConnected&&b.dataset.armed){delete b.dataset.armed;b.classList.remove('armed');b.innerHTML=b.dataset.orig;}},3000);
+  return false;
+}
+function getEntry(id){return S.entries.find(function(e){return e.id===id;});}
+
+document.addEventListener('click',function(ev){
+  var b=ev.target.closest('[data-act]'); if(!b) return;
+  if(b.matches('select,input,textarea')||b.tagName==='LABEL') return;
+  var a=b.dataset.act;
+  if(b.dataset.arm&&!armed(b)) return;
+  var t,c,e;
+  switch(a){
+    case 'nav': ui.page=b.dataset.p; if(b.dataset.t)ui.mtab=b.dataset.t; try{history.replaceState(null,'','#'+ui.page);}catch(x){} render(); window.scrollTo(0,0); break;
+    case 'toggle-done': t=taskById(b.dataset.t); mutate(function(){upsertSingle(b.dataset.c,t,isDone(b.dataset.c,t.id)?'':'Done');}); break;
+    case 'run-add': t=taskById(b.dataset.t); c=charById(b.dataset.c); mutate(function(){var e2={id:uid(),week:WK,charId:c.id,taskId:t.id,diff:'',talisman:false,ts:Date.now(),rewards:[]}; snap(e2,c,t); S.entries.push(e2);}); break;
+    case 'run-del': mutate(function(){S.entries=S.entries.filter(function(x){return x.id!==b.dataset.e;});}); break;
+    case 'mtab': ui.mtab=b.dataset.k; render(); break;
+    case 'rpt-kind': ui.rpt=b.dataset.k; ui.off=0; render(); break;
+    case 'rpt-prev': ui.off--; render(); break;
+    case 'rpt-next': if(ui.off<0){ui.off++; render();} break;
+    case 'task-pick': ui.etask=b.dataset.id; ui.ediff=''; render(); break;
+    case 'acct-del': mutate(function(){S.accounts=S.accounts.filter(function(x){return x.id!==b.dataset.id;}); S.chars=S.chars.filter(function(x){return x.accountId!==b.dataset.id;}); if(ui.acct===b.dataset.id)ui.acct='all';}); toast('Account deleted'); break;
+    case 'char-del': mutate(function(){S.chars=S.chars.filter(function(x){return x.id!==b.dataset.id;});}); toast('Character deleted'); break;
+    case 'cls-del': mutate(function(){S.classes=S.classes.filter(function(x){return x!==b.dataset.old;}); S.chars.forEach(function(x){if(x.cls===b.dataset.old)x.cls='';});}); toast('Class deleted'); break;
+    case 'rew-add': t=taskById(ui.etask); mutate(function(){var d=t.difficulties.find(function(x){return x.name===ui.ediff;}); if(d)d.rewards.push({item:'New reward',qty:1});}); break;
+    case 'rew-del': t=taskById(ui.etask); mutate(function(){var d=t.difficulties.find(function(x){return x.name===ui.ediff;}); d.rewards.splice(Number(b.dataset.i),1);}); break;
+    case 'diff-del': t=taskById(ui.etask); mutate(function(){t.difficulties=t.difficulties.filter(function(x){return x.name!==ui.ediff;}); ui.ediff='';}); break;
+    case 'task-restore': t=taskById(ui.etask); mutate(function(){var def=defaultTasks().find(function(x){return x.id===t.id;}); if(def){t.difficulties=def.difficulties;} ui.ediff='';}); toast('Defaults restored'); break;
+    case 'export': ui.dlg={msg:''}; render(); break;
+    case 'exp-rewards-json': exportTable('rewards','json'); break;
+    case 'exp-rewards-csv': exportTable('rewards','csv'); break;
+    case 'exp-classes-json': exportTable('classes','json'); break;
+    case 'exp-classes-csv': exportTable('classes','csv'); break;
+    case 'dlg-close': ui.dlg=null; render(); break;
+    case 'dlg-dl': downloadBackup(); break;
+    case 'dlg-copy': copyText(exportData(),$('#bk-text')).then(function(ok){toast(ok?'JSON copied to clipboard':'Copy is blocked here. The text is selected, copy it by hand.'); if(!ok){var bt=$('#bk-text'); if(bt){bt.focus(); bt.select();}}}); break;
+    case 'copy-json': copyJson(); break;
+    case 'import-text': doImport($('#imp-text').value); break;
+    case 'clear-hist': mutate(function(){S.entries=[];}); toast('History cleared'); break;
+    case 'reset-all': try{localStorage.removeItem(KEY);}catch(x){} S=defaults(); ui.setup={sel:{}}; ui.page='tracker'; save(); render(); break;
+    case 'su-all': S.tasks.forEach(function(x){ui.setup.sel[x.id]=true;}); render(); break;
+    case 'su-none': ui.setup.sel={}; render(); break;
+  }
+});
+document.addEventListener('keydown',function(ev){
+  if((ev.key==='Enter'||ev.key===' ')&&ev.target.matches('.trow')){ev.preventDefault(); ev.target.click();}
+});
+document.addEventListener('change',function(ev){
+  var b=ev.target.closest('[data-act]'); if(!b||!b.matches('select,input,textarea')) return;
+  var a=b.dataset.act, v=b.value, t, c, e;
+  switch(a){
+    case 'f-acct': ui.acct=v; render(); break;
+    case 'm-acct': ui.macct=v; render(); break;
+    case 'set-diff':
+      t=taskById(b.dataset.t); c=b.dataset.c;
+      if(t.kind==='nm'){var cur=ents(c,t.id)[0]; if(cur&&cur.diff&&v&&diffIndex(t,v)<diffIndex(t,cur.diff)){toast('NM keeps the highest difficulty cleared'); render(); break;}}
+      mutate(function(){upsertSingle(c,t,v);}); break;
+    case 'run-diff': e=getEntry(b.dataset.e); t=taskById(e.taskId); mutate(function(){e.diff=v; e.rewards=computeRewards(t,v,e.talisman); e.ts=Date.now(); snap(e,charById(e.charId)||{ign:e.ign,accountId:'',cls:e.cls},t);}); break;
+    case 'run-tal': e=getEntry(b.dataset.e); t=taskById(e.taskId); mutate(function(){e.talisman=b.checked; e.rewards=computeRewards(t,e.diff,e.talisman);}); break;
+    case 'char-ign': c=charById(b.dataset.id); if(!v.trim()){render();break;} mutate(function(){c.ign=v.trim();}); break;
+    case 'char-cls': c=charById(b.dataset.id); mutate(function(){c.cls=ensureClass(v);}); break;
+    case 'char-acct': c=charById(b.dataset.id); mutate(function(){c.accountId=v;}); break;
+    case 'acct-ren': mutate(function(){var a2=acctById(b.dataset.id); if(v.trim())a2.name=v.trim();}); break;
+    case 'cls-ren': mutate(function(){var nn=v.trim(), old=b.dataset.old; if(!nn||nn===old)return; var i=S.classes.indexOf(old); S.classes[i]=nn; S.chars.forEach(function(x){if(x.cls===old)x.cls=nn;});}); break;
+    case 'task-en': t=taskById(b.dataset.id); mutate(function(){t.enabled=b.checked;}); break;
+    case 'diff-pick': ui.ediff=v; render(); break;
+    case 'diff-ren': t=taskById(ui.etask); mutate(function(){var d=t.difficulties.find(function(x){return x.name===ui.ediff;}); var nn=v.trim(); if(nn&&!t.difficulties.some(function(x){return x.name===nn;})){d.name=nn; ui.ediff=nn;}}); break;
+    case 'diff-copy': if(!v)break; t=taskById(ui.etask); mutate(function(){var src=t.difficulties.find(function(x){return x.name===v;}), d=t.difficulties.find(function(x){return x.name===ui.ediff;}); d.rewards=JSON.parse(JSON.stringify(src.rewards));}); toast('Rewards copied'); break;
+    case 'rew-item': case 'rew-qty': case 'rew-txt':
+      t=taskById(ui.etask); mutate(function(){var d=t.difficulties.find(function(x){return x.name===ui.ediff;}), r=d.rewards[Number(b.dataset.i)];
+        if(a==='rew-item') r.item=v.trim()||r.item; else if(a==='rew-qty') r.qty=Number(v)||0; else {if(v.trim())r.qtyText=v.trim(); else delete r.qtyText;}}); break;
+    case 'coin-all': mutate(function(){coinWeek().list.forEach(function(e){setCoin(e,b.checked);});}); toast(b.checked?'All Shiny Hero Coins converted to gold':'Shiny Hero Coins restored'); break;
+    case 'coin-sell': e=getEntry(b.dataset.e); mutate(function(){setCoin(e,b.checked);}); toast(b.checked?'Shiny Hero Coins converted to gold':'Shiny Hero Coins restored'); break;
+    case 'set-coin': mutate(function(){var n=Number(v); S.settings.coinRate=isFinite(n)&&n>=0?Math.round(n):10000;}); break;
+    case 'set-tal': mutate(function(){var n=Number(v); S.settings.talisman=isFinite(n)&&n>=0?n:30;}); break;
+    case 'imp-rewards': readPicked(b,importRewards); break;
+    case 'imp-classes': readPicked(b,importClasses); break;
+    case 'import-file': var f=b.files&&b.files[0]; if(f){var rd=new FileReader(); rd.onload=function(){doImport(String(rd.result)); b.value='';}; rd.onerror=function(){toast('Could not read that file'); b.value='';}; rd.readAsText(f);} break;
+    case 'su-pick': ui.setup.sel[b.dataset.id]=b.checked; var n2=Object.keys(ui.setup.sel).filter(function(k){return ui.setup.sel[k];}).length; $('#su-n').textContent=n2+' selected'; $('#su-go').disabled=!n2; break;
+  }
+});
+document.addEventListener('input',function(ev){
+  if(ev.target.id==='f-q'){ui.q=ev.target.value; refreshGrid();}
+});
+document.addEventListener('submit',function(ev){
+  var f=ev.target.closest('[data-form]'); if(!f) return; ev.preventDefault();
+  var k=f.dataset.form, fd=new FormData(f), g=function(n){return String(fd.get(n)||'').trim();}, aid;
+  if(k==='setup'){
+    mutate(function(){
+      S.tasks.forEach(function(t){t.enabled=!!ui.setup.sel[t.id];});
+      var an=g('acct'), ig=g('ign'), cl=g('cls');
+      if(an){var a=S.accounts.find(function(x){return x.name.toLowerCase()===an.toLowerCase();}); if(!a){a={id:uid(),name:an};S.accounts.push(a);} if(ig)S.chars.push({id:uid(),accountId:a.id,ign:ig,cls:ensureClass(cl)});}
+      S.setupDone=true;
+    });
+  } else if(k==='quick-add'){
+    mutate(function(){var an=g('acct'), a=S.accounts.find(function(x){return x.name.toLowerCase()===an.toLowerCase();}); if(!a){a={id:uid(),name:an};S.accounts.push(a);} S.chars.push({id:uid(),accountId:a.id,ign:g('ign'),cls:ensureClass(g('cls'))});});
+  } else if(k==='acct-add'){
+    mutate(function(){var na={id:uid(),name:g('name')}; S.accounts.push(na); ui.macct=na.id;});
+  } else if(k==='char-add'){
+    aid=f.dataset.id; mutate(function(){S.chars.push({id:uid(),accountId:aid,ign:g('ign'),cls:ensureClass(g('cls'))});}); toast('Character added');
+  } else if(k==='cls-add'){
+    mutate(function(){ensureClass(g('name'));});
+  } else if(k==='diff-add'){
+    var t=taskById(ui.etask), nm=g('name'); if(!nm||t.difficulties.some(function(x){return x.name===nm;})){toast('Use a new difficulty name');return;}
+    mutate(function(){t.difficulties.push({name:nm,rewards:[]}); ui.ediff=nm;});
+  }
+});
+
+/* js/backup.js */
+/* ---------- backup ---------- */
+function exportData(){return JSON.stringify(Object.assign({app:'task-ledger',exportedAt:new Date().toISOString()},S),null,2);}
+function copyText(txt,ta){
+  function legacy(){
+    try{
+      var t=ta, tmp=false;
+      if(!t){t=document.createElement('textarea'); t.value=txt; t.setAttribute('readonly',''); t.style.cssText='position:fixed;top:0;left:0;opacity:0'; document.body.appendChild(t); tmp=true;}
+      t.focus(); t.select(); if(t.setSelectionRange) t.setSelectionRange(0,t.value.length);
+      var ok=document.execCommand('copy'); if(tmp) t.remove(); return !!ok;
+    }catch(e){return false;}
+  }
+  try{ if(navigator.clipboard&&navigator.clipboard.writeText) return navigator.clipboard.writeText(txt).then(function(){return true;},function(){return legacy();}); }catch(e){}
+  return Promise.resolve(legacy());
+}
+function copyJson(){
+  copyText(exportData()).then(function(ok){
+    if(ok){toast('JSON copied to clipboard');}
+    else{ui.dlg={msg:'Copying is blocked in this view. The text is selected below: copy it by hand, or use Download file.',sel:true}; render();}
+  });
+}
+function saveFile(name,data,mime){
+  var cl=window.claude;
+  function anchor(){
+    try{
+      var u=URL.createObjectURL(new Blob([data],{type:mime||'application/octet-stream'})), a=document.createElement('a');
+      a.href=u; a.download=name; document.body.appendChild(a); a.click();
+      setTimeout(function(){a.remove(); URL.revokeObjectURL(u);},1500);
+      toast('Download started. If nothing happens, copy the text instead.');
+    }catch(e){toast('Download is blocked here. Copy the text instead.');}
+  }
+  if(cl&&cl.use){
+    cl.use('downloads').then(function(d){
+      if(!d){anchor(); return;}
+      return d.save({filename:name,data:data}).then(function(){toast('Export saved');},function(err){if(!err||err.code!=='declined')anchor();});
+    }).catch(anchor);
+  }else anchor();
+}
+function downloadBackup(){saveFile('task-ledger-'+dateKey(new Date())+'.json',exportData(),'application/json');}
+function dlgHtml(){
+  if(!ui.dlg) return '';
+  return '<div class="scrim"><div class="dlg" role="dialog" aria-modal="true" aria-labelledby="bk-h"><div><h2 id="bk-h">Backup JSON</h2><p class="sub" style="margin:6px 0 0">'+esc(ui.dlg.msg||'Download the file, or copy the text and keep it somewhere safe. To restore, use Import in Manage, Settings & data.')+'</p></div>'+
+    '<textarea class="in" id="bk-text" rows="10" readonly style="font-family:monospace;font-size:12px;width:100%">'+esc(exportData())+'</textarea>'+
+    '<div class="toolbar"><button class="btn primary" data-act="dlg-dl">'+ico('down')+'Download file</button><button class="btn" data-act="dlg-copy">Copy JSON</button><button class="btn" data-act="dlg-close">Close</button></div></div></div>';
+}
+function doImport(txt){
+  try{
+    if(!String(txt||'').trim()){toast('Paste the exported JSON first'); return;}
+    var o=JSON.parse(txt);
+    if(!o||!Array.isArray(o.tasks)||!Array.isArray(o.chars)) throw new Error('shape');
+    S=migrate(o); S.setupDone=true; save(); render(); toast('Backup imported');
+  }catch(e){toast('That file is not a Task Ledger backup');}
+}
+
+/* js/transfer.js */
+/* ---------- rewards table and classes: import / export (JSON, CSV) ---------- */
+
+/* --- CSV helpers (RFC 4180 style: quotes, escaped quotes, CRLF or LF, comma or semicolon) --- */
+function csvCell(v){
+  v=v==null?'':String(v);
+  return /[",;\r\n]/.test(v)||/^\s|\s$/.test(v)?'"'+v.replace(/"/g,'""')+'"':v;
+}
+function toCsv(rows){return rows.map(function(r){return r.map(csvCell).join(',');}).join('\r\n')+'\r\n';}
+function parseCsv(text){
+  text=String(text).replace(/^\uFEFF/,'');
+  var first=text.split(/\r?\n/)[0]||'', delim=(first.split(';').length>first.split(',').length)?';':',';
+  var rows=[], row=[], f='', q=false, i, ch;
+  for(i=0;i<text.length;i++){
+    ch=text[i];
+    if(q){ if(ch==='"'){ if(text[i+1]==='"'){f+='"'; i++;} else q=false; } else f+=ch; }
+    else if(ch==='"') q=true;
+    else if(ch===delim){row.push(f); f='';}
+    else if(ch==='\n'||ch==='\r'){ if(ch==='\r'&&text[i+1]==='\n')i++; row.push(f); f=''; rows.push(row); row=[]; }
+    else f+=ch;
+  }
+  if(f!==''||row.length){row.push(f); rows.push(row);}
+  return rows.filter(function(r){return r.some(function(c){return String(c).trim()!=='';});});
+}
+
+/* --- export --- */
+function rewardsPayload(){
+  return {app:'task-ledger',type:'rewards',version:1,exportedAt:new Date().toISOString(),
+    tasks:S.tasks.map(function(t){
+      return {id:t.id,name:t.name,kind:t.kind,sub:t.sub||'',difficulties:t.difficulties.map(function(d){
+        return {name:d.name,rewards:(d.rewards||[]).map(function(r){var o={item:r.item,qty:Number(r.qty)||0}; if(r.qtyText)o.qtyText=r.qtyText; return o;})};
+      })};
+    })};
+}
+function rewardsCsv(){
+  var rows=[['task_id','task','difficulty','item','qty','qty_text']];
+  S.tasks.forEach(function(t){t.difficulties.forEach(function(d){
+    if(!(d.rewards||[]).length) rows.push([t.id,t.name,d.name,'','','']);
+    else d.rewards.forEach(function(r){rows.push([t.id,t.name,d.name,r.item,r.qty,r.qtyText||'']);});
+  });});
+  return toCsv(rows);
+}
+function classesPayload(){return {app:'task-ledger',type:'classes',version:1,exportedAt:new Date().toISOString(),classes:S.classes.slice()};}
+function classesCsv(){return toCsv([['class']].concat(S.classes.map(function(c){return [c];})));}
+
+function exportTable(kind,fmt){
+  var data, name='task-ledger-'+kind+'-'+dateKey(new Date())+'.'+fmt;
+  if(fmt==='json') data=JSON.stringify(kind==='rewards'?rewardsPayload():classesPayload(),null,2);
+  else data='\uFEFF'+(kind==='rewards'?rewardsCsv():classesCsv());
+  saveFile(name,data,fmt==='json'?'application/json':'text/csv');
+}
+
+/* --- import: shared --- */
+function readPicked(input,cb){
+  var f=input.files&&input.files[0]; if(!f) return;
+  var rd=new FileReader();
+  rd.onload=function(){cb(String(rd.result),f.name); input.value='';};
+  rd.onerror=function(){toast('Could not read that file'); input.value='';};
+  rd.readAsText(f);
+}
+function looksJson(text,name){return /\.json$/i.test(name||'')||/^\s*[\[{]/.test(text);}
+function parseJsonText(text){
+  try{return JSON.parse(text);}catch(e){throw new Error('That file is not valid JSON');}
+}
+function colIndex(header,names){
+  for(var i=0;i<names.length;i++){var k=header.indexOf(names[i]); if(k>=0) return k;}
+  return -1;
+}
+
+/* --- import: rewards --- */
+function rewardsFromCsv(text){
+  var rows=parseCsv(text); if(rows.length<2) throw new Error('The CSV has no data rows');
+  var h=rows[0].map(function(c){return String(c).trim().toLowerCase().replace(/[\s-]+/g,'_');});
+  var ti=colIndex(h,['task_id','id']), tn=colIndex(h,['task','task_name','name']),
+      di=colIndex(h,['difficulty','floor']), ii=colIndex(h,['item','reward']),
+      qi=colIndex(h,['qty','quantity','amount']), xi=colIndex(h,['qty_text','display_text','text']);
+  if((ti<0&&tn<0)||di<0||ii<0) throw new Error('CSV needs the columns task_id (or task), difficulty, item, qty and qty_text');
+  var tasks=[], byKey={};
+  rows.slice(1).forEach(function(r,n){
+    var id=ti>=0?String(r[ti]||'').trim():'', name=tn>=0?String(r[tn]||'').trim():'', key=(id||name).toLowerCase(), dn=String(r[di]||'').trim();
+    if(!key||!dn) return;
+    var t=byKey[key]; if(!t){t=byKey[key]={id:id,name:name,difficulties:[],_d:{}}; tasks.push(t);}
+    var d=t._d[dn]; if(!d){d=t._d[dn]={name:dn,rewards:[]}; t.difficulties.push(d);}
+    var item=String(r[ii]||'').trim(); if(!item) return;
+    var qraw=qi>=0?String(r[qi]||'').trim():'', q=qraw===''?0:Number(qraw);
+    if(!isFinite(q)||q<0) throw new Error('Row '+(n+2)+': qty "'+qraw+'" is not a number');
+    var o={item:item,qty:q}, tx=xi>=0?String(r[xi]||'').trim():''; if(tx)o.qtyText=tx;
+    d.rewards.push(o);
+  });
+  return tasks;
+}
+function normalizeTask(x,n){
+  if(!x||typeof x!=='object') throw new Error('Task #'+(n+1)+' is not an object');
+  var id=String(x.id||'').trim(), name=String(x.name||x.task||'').trim();
+  if(!id&&!name) throw new Error('Task #'+(n+1)+' needs an id or a name');
+  if(!Array.isArray(x.difficulties)) throw new Error('Task "'+(id||name)+'" needs a difficulties list');
+  var seen={};
+  var diffs=x.difficulties.map(function(d){
+    var dn=String(d&&d.name||'').trim();
+    if(!dn) throw new Error('Task "'+(id||name)+'" has a difficulty without a name');
+    if(seen[dn]) throw new Error('Task "'+(id||name)+'" lists "'+dn+'" twice');
+    seen[dn]=1;
+    var rw=Array.isArray(d.rewards)?d.rewards:[];
+    return {name:dn,rewards:rw.map(function(r){
+      var item=String(r&&r.item||'').trim(), q=Number(r&&r.qty);
+      if(!item) throw new Error('"'+dn+'" has a reward without an item name');
+      if(r.qty===undefined||r.qty===''||r.qty===null) q=0;
+      if(!isFinite(q)||q<0) throw new Error('"'+dn+'", "'+item+'": qty is not a valid number');
+      var o={item:item,qty:q}; if(r.qtyText&&String(r.qtyText).trim())o.qtyText=String(r.qtyText).trim(); return o;
+    })};
+  });
+  return {id:id,name:name,difficulties:diffs};
+}
+function importRewards(text,fname){
+  try{
+    if(!String(text||'').trim()) throw new Error('That file is empty');
+    var list;
+    if(looksJson(text,fname)){
+      var o=parseJsonText(text); list=Array.isArray(o)?o:(o&&o.tasks);
+      if(!Array.isArray(list)) throw new Error('No "tasks" list found in that file');
+    } else list=rewardsFromCsv(text);
+    list=list.map(normalizeTask);
+    var plan=[], skipped=0;
+    list.forEach(function(x){
+      var t=(x.id&&S.tasks.find(function(y){return y.id===x.id;}))||(x.name&&S.tasks.find(function(y){return y.name.toLowerCase()===x.name.toLowerCase();}));
+      if(t) plan.push([t,x.difficulties]); else skipped++;
+    });
+    if(!plan.length) throw new Error('No task in the file matches your task ids or names');
+    var floors=0;
+    mutate(function(){plan.forEach(function(p){p[0].difficulties=p[1]; floors+=p[1].length;}); ui.ediff='';});
+    toast('Rewards imported: '+plan.length+' task'+(plan.length===1?'':'s')+', '+floors+' floor'+(floors===1?'':'s')+(skipped?' ('+skipped+' skipped, no match)':''));
+  }catch(e){toast(e&&e.message?e.message:'Could not import that file');}
+}
+
+/* --- import: classes --- */
+function importClasses(text,fname){
+  try{
+    if(!String(text||'').trim()) throw new Error('That file is empty');
+    var raw;
+    if(looksJson(text,fname)){
+      var o=parseJsonText(text); raw=Array.isArray(o)?o:(o&&o.classes);
+      if(!Array.isArray(raw)) throw new Error('No "classes" list found in that file');
+      raw=raw.map(function(c){return typeof c==='string'?c:(c&&c.name)||'';});
+    } else {
+      var rows=parseCsv(text); raw=rows.map(function(r){return r[0];});
+      if(raw.length&&/^(class|classes|name)$/i.test(String(raw[0]).trim())) raw.shift();
+    }
+    var list=[];
+    raw.forEach(function(c){c=String(c||'').trim(); if(c&&!list.some(function(x){return x.toLowerCase()===c.toLowerCase();})) list.push(c);});
+    if(!list.length) throw new Error('No class names found in that file');
+    var kept=0;
+    mutate(function(){
+      S.chars.forEach(function(ch){
+        if(!ch.cls) return;
+        var m=list.find(function(x){return x.toLowerCase()===ch.cls.toLowerCase();});
+        if(m){ch.cls=m;} else {list.push(ch.cls); kept++;}   /* keep classes that characters still use */
+      });
+      S.classes=list;
+    });
+    toast('Classes imported: '+list.length+(kept?' ('+kept+' kept because characters use them)':''));
+  }catch(e){toast(e&&e.message?e.message:'Could not import that file');}
+}
+
+/* --- UI: export / import buttons --- */
+function transferBar(kind){
+  var label=kind==='rewards'?'Rewards table':'Classes';
+  return '<div class="xfer"><span class="sub"><b>'+label+'</b></span>'+
+    '<button class="btn sm" data-act="exp-'+kind+'-json">'+ico('down')+'JSON</button>'+
+    '<button class="btn sm" data-act="exp-'+kind+'-csv">'+ico('down')+'CSV</button>'+
+    '<label class="btn sm" for="imp-'+kind+'" style="cursor:pointer">'+ico('up')+'Import</label>'+
+    '<input id="imp-'+kind+'" type="file" accept=".json,.csv,.txt,application/json,text/csv,text/plain" data-act="imp-'+kind+'" hidden></div>';
+}
+
+/* js/app.js */
+/* ---------- clock: countdown + automatic weekly reset ---------- */
+setInterval(function(){
+  var k=dateKey(weekStart(new Date()));
+  if(k!==WK){render(); toast('Weekly reset. A new week has started.'); return;}
+  var a=$('#cd'), b=$('#cd2'); if(a)a.textContent=countdown(); if(b)b.textContent=countdown();
+},30000);
+
+boot();
+})();
+  </script>
+</body>
+</html>

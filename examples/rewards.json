@@ -1,0 +1,3580 @@
+{
+  "app": "task-ledger",
+  "type": "rewards",
+  "version": 1,
+  "tasks": [
+    {
+      "id": "ark",
+      "name": "ARK",
+      "kind": "diff",
+      "sub": "Weekly clear rewards by floor (patch 199). Multiple runs",
+      "difficulties": [
+        {
+          "name": "Ark of Transcendence [Past] 1F",
+          "rewards": [
+            {
+              "item": "Lunar Eclipse Fragment (6 Types)",
+              "qty": 150
+            },
+            {
+              "item": "Ancient Broken Dragon Jade Fragment",
+              "qty": 5
+            },
+            {
+              "item": "Ark Stone Fragment",
+              "qty": 1
+            }
+          ]
+        },
+        {
+          "name": "Ark of Transcendence [Past] 2F",
+          "rewards": [
+            {
+              "item": "Lunar Eclipse Fragment (6 Types)",
+              "qty": 225
+            },
+            {
+              "item": "Ancient Broken Dragon Jade Fragment",
+              "qty": 5
+            },
+            {
+              "item": "Ark Stone Fragment",
+              "qty": 1
+            }
+          ]
+        },
+        {
+          "name": "Ark of Transcendence [Past] 3F",
+          "rewards": [
+            {
+              "item": "Lunar Eclipse Fragment (6 Types)",
+              "qty": 300
+            },
+            {
+              "item": "Ancient Broken Dragon Jade Fragment",
+              "qty": 5
+            },
+            {
+              "item": "Ark Stone Fragment",
+              "qty": 1
+            }
+          ]
+        },
+        {
+          "name": "Ark of Transcendence [Past] 4F",
+          "rewards": [
+            {
+              "item": "Lunar Eclipse Fragment (6 Types)",
+              "qty": 375
+            },
+            {
+              "item": "Ancient Broken Dragon Jade Fragment",
+              "qty": 5
+            },
+            {
+              "item": "Ark Stone Fragment",
+              "qty": 1
+            }
+          ]
+        },
+        {
+          "name": "Ark of Transcendence [Past] 5F",
+          "rewards": [
+            {
+              "item": "Lunar Eclipse Fragment (6 Types)",
+              "qty": 450
+            },
+            {
+              "item": "Ancient Broken Dragon Jade Fragment",
+              "qty": 8
+            },
+            {
+              "item": "Ark Stone Fragment",
+              "qty": 1
+            }
+          ]
+        },
+        {
+          "name": "Ark of Transcendence [Past] 6F",
+          "rewards": [
+            {
+              "item": "Lunar Eclipse Fragment (6 Types)",
+              "qty": 525
+            },
+            {
+              "item": "Ancient Broken Dragon Jade Fragment",
+              "qty": 8
+            },
+            {
+              "item": "Ark Stone Fragment",
+              "qty": 1
+            }
+          ]
+        },
+        {
+          "name": "Ark of Transcendence [Past] 7F",
+          "rewards": [
+            {
+              "item": "Lunar Eclipse Fragment (6 Types)",
+              "qty": 600
+            },
+            {
+              "item": "Ancient Broken Dragon Jade Fragment",
+              "qty": 8
+            },
+            {
+              "item": "Ark Stone Fragment",
+              "qty": 1
+            }
+          ]
+        },
+        {
+          "name": "Ark of Transcendence [Past] 8F",
+          "rewards": [
+            {
+              "item": "Lunar Eclipse Fragment (6 Types)",
+              "qty": 675
+            },
+            {
+              "item": "Ancient Broken Dragon Jade Fragment",
+              "qty": 8
+            },
+            {
+              "item": "Ark Stone Fragment",
+              "qty": 1
+            }
+          ]
+        },
+        {
+          "name": "Ark of Transcendence [Past] 9F",
+          "rewards": [
+            {
+              "item": "Lunar Eclipse Fragment (6 Types)",
+              "qty": 750
+            },
+            {
+              "item": "Ancient Broken Dragon Jade Fragment",
+              "qty": 8
+            },
+            {
+              "item": "Ark Stone Fragment",
+              "qty": 1
+            }
+          ]
+        },
+        {
+          "name": "Ark of Transcendence [Past] 10F",
+          "rewards": [
+            {
+              "item": "Lunar Eclipse Fragment (6 Types)",
+              "qty": 825
+            },
+            {
+              "item": "Ancient Broken Dragon Jade Fragment",
+              "qty": 15
+            },
+            {
+              "item": "Ark Stone Fragment",
+              "qty": 1
+            }
+          ]
+        },
+        {
+          "name": "Ark of Transcendence [Past] 11F",
+          "rewards": [
+            {
+              "item": "Lunar Eclipse Fragment (6 Types)",
+              "qty": 900
+            },
+            {
+              "item": "Ancient Broken Dragon Jade Fragment",
+              "qty": 15
+            },
+            {
+              "item": "Ark Stone Fragment",
+              "qty": 1
+            }
+          ]
+        },
+        {
+          "name": "Ark of Transcendence [Past] 12F",
+          "rewards": [
+            {
+              "item": "Lunar Eclipse Fragment (6 Types)",
+              "qty": 975
+            },
+            {
+              "item": "Ancient Broken Dragon Jade Fragment",
+              "qty": 15
+            },
+            {
+              "item": "Ark Stone Fragment",
+              "qty": 1
+            }
+          ]
+        },
+        {
+          "name": "Ark of Transcendence [Past] 13F",
+          "rewards": [
+            {
+              "item": "Lunar Eclipse Fragment (6 Types)",
+              "qty": 1050
+            },
+            {
+              "item": "Ancient Broken Dragon Jade Fragment",
+              "qty": 15
+            },
+            {
+              "item": "Ark Stone Fragment",
+              "qty": 1
+            }
+          ]
+        },
+        {
+          "name": "Ark of Transcendence [Past] 14F",
+          "rewards": [
+            {
+              "item": "Lunar Eclipse Fragment (6 Types)",
+              "qty": 1125
+            },
+            {
+              "item": "Ancient Broken Dragon Jade Fragment",
+              "qty": 15
+            },
+            {
+              "item": "Ark Stone Fragment",
+              "qty": 1
+            }
+          ]
+        },
+        {
+          "name": "Ark of Transcendence [Past] 15F",
+          "rewards": [
+            {
+              "item": "High Grade Lunar Eclipse Fragment (6 Types)",
+              "qty": 45
+            },
+            {
+              "item": "Ancient Broken Dragon Jade Fragment",
+              "qty": 23
+            },
+            {
+              "item": "Ark Stone Fragment",
+              "qty": 1
+            },
+            {
+              "item": "Ancients' Blueprint Fragment",
+              "qty": 45
+            }
+          ]
+        },
+        {
+          "name": "Ark of Transcendence [Past] 16F",
+          "rewards": [
+            {
+              "item": "High Grade Lunar Eclipse Fragment (6 Types)",
+              "qty": 45
+            },
+            {
+              "item": "Ancient Broken Dragon Jade Fragment",
+              "qty": 23
+            },
+            {
+              "item": "Ark Stone Fragment",
+              "qty": 1
+            },
+            {
+              "item": "Ancients' Blueprint Fragment",
+              "qty": 45
+            }
+          ]
+        },
+        {
+          "name": "Ark of Transcendence [Past] 17F",
+          "rewards": [
+            {
+              "item": "High Grade Lunar Eclipse Fragment (6 Types)",
+              "qty": 45
+            },
+            {
+              "item": "Ancient Broken Dragon Jade Fragment",
+              "qty": 23
+            },
+            {
+              "item": "Ark Stone Fragment",
+              "qty": 1
+            },
+            {
+              "item": "Ancients' Blueprint Fragment",
+              "qty": 45
+            }
+          ]
+        },
+        {
+          "name": "Ark of Transcendence [Past] 18F",
+          "rewards": [
+            {
+              "item": "High Grade Lunar Eclipse Fragment (6 Types)",
+              "qty": 45
+            },
+            {
+              "item": "Ancient Broken Dragon Jade Fragment",
+              "qty": 23
+            },
+            {
+              "item": "Ark Stone Fragment",
+              "qty": 1
+            },
+            {
+              "item": "Ancients' Blueprint Fragment",
+              "qty": 45
+            }
+          ]
+        },
+        {
+          "name": "Ark of Transcendence [Past] 19F",
+          "rewards": [
+            {
+              "item": "High Grade Lunar Eclipse Fragment (6 Types)",
+              "qty": 45
+            },
+            {
+              "item": "Ancient Broken Dragon Jade Fragment",
+              "qty": 23
+            },
+            {
+              "item": "Ark Stone Fragment",
+              "qty": 1
+            },
+            {
+              "item": "Ancients' Blueprint Fragment",
+              "qty": 45
+            }
+          ]
+        },
+        {
+          "name": "Ark of Transcendence [Past] 20F",
+          "rewards": [
+            {
+              "item": "High Grade Lunar Eclipse Fragment (6 Types)",
+              "qty": 75
+            },
+            {
+              "item": "Ancient Broken Dragon Jade Fragment",
+              "qty": 38
+            },
+            {
+              "item": "Ark Stone Fragment",
+              "qty": 1
+            },
+            {
+              "item": "Ancients' Blueprint Fragment",
+              "qty": 60
+            }
+          ]
+        },
+        {
+          "name": "Ark of Transcendence [Past] 21F",
+          "rewards": [
+            {
+              "item": "High Grade Lunar Eclipse Fragment (6 Types)",
+              "qty": 75
+            },
+            {
+              "item": "Ancient Broken Dragon Jade Fragment",
+              "qty": 38
+            },
+            {
+              "item": "Ark Stone Fragment",
+              "qty": 1
+            },
+            {
+              "item": "Ancients' Blueprint Fragment",
+              "qty": 60
+            }
+          ]
+        },
+        {
+          "name": "Ark of Transcendence [Past] 22F",
+          "rewards": [
+            {
+              "item": "High Grade Lunar Eclipse Fragment (6 Types)",
+              "qty": 75
+            },
+            {
+              "item": "Ancient Broken Dragon Jade Fragment",
+              "qty": 38
+            },
+            {
+              "item": "Ark Stone Fragment",
+              "qty": 1
+            },
+            {
+              "item": "Ancients' Blueprint Fragment",
+              "qty": 60
+            }
+          ]
+        },
+        {
+          "name": "Ark of Transcendence [Past] 23F",
+          "rewards": [
+            {
+              "item": "High Grade Lunar Eclipse Fragment (6 Types)",
+              "qty": 75
+            },
+            {
+              "item": "Ancient Broken Dragon Jade Fragment",
+              "qty": 38
+            },
+            {
+              "item": "Ark Stone Fragment",
+              "qty": 1
+            },
+            {
+              "item": "Ancients' Blueprint Fragment",
+              "qty": 60
+            }
+          ]
+        },
+        {
+          "name": "Ark of Transcendence [Past] 24F",
+          "rewards": [
+            {
+              "item": "High Grade Lunar Eclipse Fragment (6 Types)",
+              "qty": 75
+            },
+            {
+              "item": "Ancient Broken Dragon Jade Fragment",
+              "qty": 38
+            },
+            {
+              "item": "Ark Stone Fragment",
+              "qty": 1
+            },
+            {
+              "item": "Ancients' Blueprint Fragment",
+              "qty": 60
+            }
+          ]
+        },
+        {
+          "name": "Ark of Transcendence [Past] 25F",
+          "rewards": [
+            {
+              "item": "High Grade Lunar Eclipse Fragment (6 Types)",
+              "qty": 150
+            },
+            {
+              "item": "Ancient Broken Dragon Jade Fragment",
+              "qty": 45
+            },
+            {
+              "item": "Ark Stone Fragment",
+              "qty": 1
+            },
+            {
+              "item": "Ancients' Blueprint Fragment",
+              "qty": 75
+            }
+          ]
+        },
+        {
+          "name": "Ark of Transcendence [Past] 26F",
+          "rewards": [
+            {
+              "item": "High Grade Lunar Eclipse Fragment (6 Types)",
+              "qty": 151
+            },
+            {
+              "item": "Ancient Broken Dragon Jade Fragment",
+              "qty": 46
+            },
+            {
+              "item": "Ark Stone Fragment",
+              "qty": 1
+            },
+            {
+              "item": "Ancients' Blueprint Fragment",
+              "qty": 75
+            },
+            {
+              "item": "Hero Coin",
+              "qty": 10000
+            }
+          ]
+        },
+        {
+          "name": "Ark of Transcendence [Past] 27F",
+          "rewards": [
+            {
+              "item": "High Grade Lunar Eclipse Fragment (6 Types)",
+              "qty": 152
+            },
+            {
+              "item": "Ancient Broken Dragon Jade Fragment",
+              "qty": 47
+            },
+            {
+              "item": "Ark Stone Fragment",
+              "qty": 1
+            },
+            {
+              "item": "Ancients' Blueprint Fragment",
+              "qty": 75
+            },
+            {
+              "item": "Hero Coin",
+              "qty": 10000
+            }
+          ]
+        },
+        {
+          "name": "Ark of Transcendence [Past] 28F",
+          "rewards": [
+            {
+              "item": "High Grade Lunar Eclipse Fragment (6 Types)",
+              "qty": 153
+            },
+            {
+              "item": "Ancient Broken Dragon Jade Fragment",
+              "qty": 48
+            },
+            {
+              "item": "Ark Stone Fragment",
+              "qty": 1
+            },
+            {
+              "item": "Ancients' Blueprint Fragment",
+              "qty": 75
+            },
+            {
+              "item": "Hero Coin",
+              "qty": 10000
+            }
+          ]
+        },
+        {
+          "name": "Ark of Transcendence [Past] 29F",
+          "rewards": [
+            {
+              "item": "High Grade Lunar Eclipse Fragment (6 Types)",
+              "qty": 154
+            },
+            {
+              "item": "Ancient Broken Dragon Jade Fragment",
+              "qty": 49
+            },
+            {
+              "item": "Ark Stone Fragment",
+              "qty": 1
+            },
+            {
+              "item": "Ancients' Blueprint Fragment",
+              "qty": 75
+            },
+            {
+              "item": "Hero Coin",
+              "qty": 10000
+            }
+          ]
+        },
+        {
+          "name": "Ark of Transcendence [Past] 30F",
+          "rewards": [
+            {
+              "item": "High Grade Lunar Eclipse Fragment (6 Types)",
+              "qty": 155
+            },
+            {
+              "item": "Ancient Broken Dragon Jade Fragment",
+              "qty": 50
+            },
+            {
+              "item": "Ark Stone Fragment",
+              "qty": 1
+            },
+            {
+              "item": "Ancients' Blueprint Fragment",
+              "qty": 90
+            },
+            {
+              "item": "Hero Coin",
+              "qty": 15000
+            }
+          ]
+        },
+        {
+          "name": "Ark of Transcendence [Past] 31F",
+          "rewards": [
+            {
+              "item": "High Grade Lunar Eclipse Fragment (6 Types)",
+              "qty": 156
+            },
+            {
+              "item": "Ancient Broken Dragon Jade Fragment",
+              "qty": 51
+            },
+            {
+              "item": "Ark Stone Fragment",
+              "qty": 1
+            },
+            {
+              "item": "Ancients' Blueprint Fragment",
+              "qty": 90
+            },
+            {
+              "item": "Hero Coin",
+              "qty": 15000
+            }
+          ]
+        },
+        {
+          "name": "Ark of Transcendence [Past] 32F",
+          "rewards": [
+            {
+              "item": "High Grade Lunar Eclipse Fragment (6 Types)",
+              "qty": 157
+            },
+            {
+              "item": "Ancient Broken Dragon Jade Fragment",
+              "qty": 52
+            },
+            {
+              "item": "Ark Stone Fragment",
+              "qty": 1
+            },
+            {
+              "item": "Ancients' Blueprint Fragment",
+              "qty": 90
+            },
+            {
+              "item": "Hero Coin",
+              "qty": 15000
+            }
+          ]
+        },
+        {
+          "name": "Ark of Transcendence [Past] 33F",
+          "rewards": [
+            {
+              "item": "High Grade Lunar Eclipse Fragment (6 Types)",
+              "qty": 158
+            },
+            {
+              "item": "Ancient Broken Dragon Jade Fragment",
+              "qty": 53
+            },
+            {
+              "item": "Ark Stone Fragment",
+              "qty": 1
+            },
+            {
+              "item": "Ancients' Blueprint Fragment",
+              "qty": 90
+            },
+            {
+              "item": "Hero Coin",
+              "qty": 15000
+            }
+          ]
+        },
+        {
+          "name": "Ark of Transcendence [Past] 34F",
+          "rewards": [
+            {
+              "item": "High Grade Lunar Eclipse Fragment (6 Types)",
+              "qty": 159
+            },
+            {
+              "item": "Ancient Broken Dragon Jade Fragment",
+              "qty": 54
+            },
+            {
+              "item": "Ark Stone Fragment",
+              "qty": 1
+            },
+            {
+              "item": "Ancients' Blueprint Fragment",
+              "qty": 90
+            },
+            {
+              "item": "Hero Coin",
+              "qty": 15000
+            }
+          ]
+        },
+        {
+          "name": "Ark of Transcendence [Past] 35F",
+          "rewards": [
+            {
+              "item": "High Grade Lunar Eclipse Fragment (6 Types)",
+              "qty": 160
+            },
+            {
+              "item": "Ancient Broken Dragon Jade Fragment",
+              "qty": 55
+            },
+            {
+              "item": "Ark Stone Fragment",
+              "qty": 1
+            },
+            {
+              "item": "Ancients' Blueprint Fragment",
+              "qty": 105
+            },
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 2
+            }
+          ]
+        },
+        {
+          "name": "Ark of Transcendence [Past] 36F",
+          "rewards": [
+            {
+              "item": "High Grade Lunar Eclipse Fragment (6 Types)",
+              "qty": 161
+            },
+            {
+              "item": "Ancient Broken Dragon Jade Fragment",
+              "qty": 56
+            },
+            {
+              "item": "Ark Stone Fragment",
+              "qty": 1
+            },
+            {
+              "item": "Ancients' Blueprint Fragment",
+              "qty": 105
+            },
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 2
+            }
+          ]
+        },
+        {
+          "name": "Ark of Transcendence [Past] 37F",
+          "rewards": [
+            {
+              "item": "High Grade Lunar Eclipse Fragment (6 Types)",
+              "qty": 162
+            },
+            {
+              "item": "Ancient Broken Dragon Jade Fragment",
+              "qty": 57
+            },
+            {
+              "item": "Ark Stone Fragment",
+              "qty": 1
+            },
+            {
+              "item": "Ancients' Blueprint Fragment",
+              "qty": 105
+            },
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 2
+            }
+          ]
+        },
+        {
+          "name": "Ark of Transcendence [Past] 38F",
+          "rewards": [
+            {
+              "item": "High Grade Lunar Eclipse Fragment (6 Types)",
+              "qty": 163
+            },
+            {
+              "item": "Ancient Broken Dragon Jade Fragment",
+              "qty": 58
+            },
+            {
+              "item": "Ark Stone Fragment",
+              "qty": 1
+            },
+            {
+              "item": "Ancients' Blueprint Fragment",
+              "qty": 105
+            },
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 2
+            }
+          ]
+        },
+        {
+          "name": "Ark of Transcendence [Past] 39F",
+          "rewards": [
+            {
+              "item": "High Grade Lunar Eclipse Fragment (6 Types)",
+              "qty": 164
+            },
+            {
+              "item": "Ancient Broken Dragon Jade Fragment",
+              "qty": 59
+            },
+            {
+              "item": "Ark Stone Fragment",
+              "qty": 1
+            },
+            {
+              "item": "Ancients' Blueprint Fragment",
+              "qty": 105
+            },
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 2
+            }
+          ]
+        },
+        {
+          "name": "Ark of Transcendence [Past] 40F",
+          "rewards": [
+            {
+              "item": "High Grade Lunar Eclipse Fragment (6 Types)",
+              "qty": 165
+            },
+            {
+              "item": "Ancient Broken Dragon Jade Fragment",
+              "qty": 60
+            },
+            {
+              "item": "Ark Stone Fragment",
+              "qty": 1
+            },
+            {
+              "item": "Ancients' Blueprint Fragment",
+              "qty": 120
+            },
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 3
+            }
+          ]
+        },
+        {
+          "name": "Ark of Transcendence [Past] 41F",
+          "rewards": [
+            {
+              "item": "High Grade Lunar Eclipse Fragment (6 Types)",
+              "qty": 166
+            },
+            {
+              "item": "Ancient Broken Dragon Jade Fragment",
+              "qty": 61
+            },
+            {
+              "item": "Ark Stone Fragment",
+              "qty": 1
+            },
+            {
+              "item": "Ancients' Blueprint Fragment",
+              "qty": 120
+            },
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 3
+            }
+          ]
+        },
+        {
+          "name": "Ark of Transcendence [Past] 42F",
+          "rewards": [
+            {
+              "item": "High Grade Lunar Eclipse Fragment (6 Types)",
+              "qty": 167
+            },
+            {
+              "item": "Ancient Broken Dragon Jade Fragment",
+              "qty": 62
+            },
+            {
+              "item": "Ark Stone Fragment",
+              "qty": 1
+            },
+            {
+              "item": "Ancients' Blueprint Fragment",
+              "qty": 120
+            },
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 3
+            }
+          ]
+        },
+        {
+          "name": "Ark of Transcendence [Past] 43F",
+          "rewards": [
+            {
+              "item": "High Grade Lunar Eclipse Fragment (6 Types)",
+              "qty": 168
+            },
+            {
+              "item": "Ancient Broken Dragon Jade Fragment",
+              "qty": 63
+            },
+            {
+              "item": "Ark Stone Fragment",
+              "qty": 1
+            },
+            {
+              "item": "Ancients' Blueprint Fragment",
+              "qty": 120
+            },
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 3
+            }
+          ]
+        },
+        {
+          "name": "Ark of Transcendence [Past] 44F",
+          "rewards": [
+            {
+              "item": "High Grade Lunar Eclipse Fragment (6 Types)",
+              "qty": 169
+            },
+            {
+              "item": "Ancient Broken Dragon Jade Fragment",
+              "qty": 64
+            },
+            {
+              "item": "Ark Stone Fragment",
+              "qty": 1
+            },
+            {
+              "item": "Ancients' Blueprint Fragment",
+              "qty": 120
+            },
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 3
+            }
+          ]
+        },
+        {
+          "name": "Ark of Transcendence [Past] 45F",
+          "rewards": [
+            {
+              "item": "High Grade Lunar Eclipse Fragment (6 Types)",
+              "qty": 170
+            },
+            {
+              "item": "Ancient Broken Dragon Jade Fragment",
+              "qty": 65
+            },
+            {
+              "item": "Ark Stone Fragment",
+              "qty": 1
+            },
+            {
+              "item": "Ancients' Blueprint Fragment",
+              "qty": 135
+            },
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 4
+            },
+            {
+              "item": "High Purity Core Selection Pouch",
+              "qty": 1
+            }
+          ]
+        },
+        {
+          "name": "Ark of Transcendence [Past] 46F",
+          "rewards": [
+            {
+              "item": "High Grade Lunar Eclipse Fragment (6 Types)",
+              "qty": 171
+            },
+            {
+              "item": "Ancient Broken Dragon Jade Fragment",
+              "qty": 66
+            },
+            {
+              "item": "Ark Stone Fragment",
+              "qty": 1
+            },
+            {
+              "item": "Ancients' Blueprint Fragment",
+              "qty": 135
+            },
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 4
+            },
+            {
+              "item": "High Purity Core Selection Pouch",
+              "qty": 1
+            }
+          ]
+        },
+        {
+          "name": "Ark of Transcendence [Past] 47F",
+          "rewards": [
+            {
+              "item": "High Grade Lunar Eclipse Fragment (6 Types)",
+              "qty": 172
+            },
+            {
+              "item": "Ancient Broken Dragon Jade Fragment",
+              "qty": 67
+            },
+            {
+              "item": "Ark Stone Fragment",
+              "qty": 1
+            },
+            {
+              "item": "Ancients' Blueprint Fragment",
+              "qty": 135
+            },
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 4
+            },
+            {
+              "item": "High Purity Core Selection Pouch",
+              "qty": 1
+            }
+          ]
+        },
+        {
+          "name": "Ark of Transcendence [Past] 48F",
+          "rewards": [
+            {
+              "item": "High Grade Lunar Eclipse Fragment (6 Types)",
+              "qty": 173
+            },
+            {
+              "item": "Ancient Broken Dragon Jade Fragment",
+              "qty": 68
+            },
+            {
+              "item": "Ark Stone Fragment",
+              "qty": 1
+            },
+            {
+              "item": "Ancients' Blueprint Fragment",
+              "qty": 135
+            },
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 4
+            },
+            {
+              "item": "High Purity Core Selection Pouch",
+              "qty": 1
+            }
+          ]
+        },
+        {
+          "name": "Ark of Transcendence [Past] 49F",
+          "rewards": [
+            {
+              "item": "High Grade Lunar Eclipse Fragment (6 Types)",
+              "qty": 174
+            },
+            {
+              "item": "Ancient Broken Dragon Jade Fragment",
+              "qty": 69
+            },
+            {
+              "item": "Ark Stone Fragment",
+              "qty": 1
+            },
+            {
+              "item": "Ancients' Blueprint Fragment",
+              "qty": 135
+            },
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 4
+            },
+            {
+              "item": "High Purity Core Selection Pouch",
+              "qty": 1
+            }
+          ]
+        },
+        {
+          "name": "Ark of Transcendence [Past] 50F",
+          "rewards": [
+            {
+              "item": "High Grade Lunar Eclipse Fragment (6 Types)",
+              "qty": 175
+            },
+            {
+              "item": "Ancient Broken Dragon Jade Fragment",
+              "qty": 70
+            },
+            {
+              "item": "Ark Stone Fragment",
+              "qty": 1
+            },
+            {
+              "item": "Ancients' Blueprint Fragment",
+              "qty": 150
+            },
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 5
+            },
+            {
+              "item": "High Purity Core Selection Pouch",
+              "qty": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "efm",
+      "name": "EFM",
+      "kind": "efm",
+      "sub": "Fission Maze, Erosion rewards. Multiple runs",
+      "difficulties": [
+        {
+          "name": "Ascension 3-1F",
+          "rewards": [
+            {
+              "item": "Gold",
+              "qty": 27500
+            },
+            {
+              "item": "Erosion Fragment",
+              "qty": 128
+            }
+          ]
+        },
+        {
+          "name": "Ascension 3-2F",
+          "rewards": [
+            {
+              "item": "Gold",
+              "qty": 27775
+            },
+            {
+              "item": "Erosion Fragment",
+              "qty": 128
+            }
+          ]
+        },
+        {
+          "name": "Ascension 3-3F",
+          "rewards": [
+            {
+              "item": "Gold",
+              "qty": 28052.75
+            },
+            {
+              "item": "Erosion Fragment",
+              "qty": 128
+            }
+          ]
+        },
+        {
+          "name": "Ascension 3-4F",
+          "rewards": [
+            {
+              "item": "Gold",
+              "qty": 28333.2775
+            },
+            {
+              "item": "Erosion Fragment",
+              "qty": 128
+            }
+          ]
+        },
+        {
+          "name": "Ascension 3-5F",
+          "rewards": [
+            {
+              "item": "Gold",
+              "qty": 28616.6103
+            },
+            {
+              "item": "Erosion Fragment",
+              "qty": 128
+            }
+          ]
+        },
+        {
+          "name": "Ascension 3-6F",
+          "rewards": [
+            {
+              "item": "Gold",
+              "qty": 28902.7764
+            },
+            {
+              "item": "Erosion Fragment",
+              "qty": 128
+            }
+          ]
+        },
+        {
+          "name": "Ascension 3-7F",
+          "rewards": [
+            {
+              "item": "Gold",
+              "qty": 29191.804099999998
+            },
+            {
+              "item": "Erosion Fragment",
+              "qty": 128
+            }
+          ]
+        },
+        {
+          "name": "Ascension 3-8F",
+          "rewards": [
+            {
+              "item": "Gold",
+              "qty": 29483.7222
+            },
+            {
+              "item": "Erosion Fragment",
+              "qty": 128
+            }
+          ]
+        },
+        {
+          "name": "Ascension 4F",
+          "rewards": [
+            {
+              "item": "Gold",
+              "qty": 29778.5594
+            },
+            {
+              "item": "Erosion Fragment",
+              "qty": 128
+            }
+          ]
+        },
+        {
+          "name": "Ascension 4-1F",
+          "rewards": [
+            {
+              "item": "Gold",
+              "qty": 30076.345
+            },
+            {
+              "item": "Erosion Fragment",
+              "qty": 128
+            }
+          ]
+        },
+        {
+          "name": "Ascension 4-2F",
+          "rewards": [
+            {
+              "item": "Gold",
+              "qty": 30377.108399999997
+            },
+            {
+              "item": "Erosion Fragment",
+              "qty": 128
+            }
+          ]
+        },
+        {
+          "name": "Ascension 4-3F",
+          "rewards": [
+            {
+              "item": "Gold",
+              "qty": 30680.8795
+            },
+            {
+              "item": "Erosion Fragment",
+              "qty": 128
+            }
+          ]
+        },
+        {
+          "name": "Ascension 4-4F",
+          "rewards": [
+            {
+              "item": "Gold",
+              "qty": 30987.6883
+            },
+            {
+              "item": "Erosion Fragment",
+              "qty": 128
+            }
+          ]
+        },
+        {
+          "name": "Ascension 4-5F",
+          "rewards": [
+            {
+              "item": "Gold",
+              "qty": 31297.5652
+            },
+            {
+              "item": "Erosion Fragment",
+              "qty": 128
+            }
+          ]
+        },
+        {
+          "name": "Ascension 5F",
+          "rewards": [
+            {
+              "item": "Gold",
+              "qty": 31610.5409
+            },
+            {
+              "item": "Erosion Fragment",
+              "qty": 128
+            }
+          ]
+        },
+        {
+          "name": "Ascension 5-1F",
+          "rewards": [
+            {
+              "item": "Gold",
+              "qty": 31926.6463
+            },
+            {
+              "item": "Erosion Fragment",
+              "qty": 128
+            }
+          ]
+        },
+        {
+          "name": "Ascension 5-2F",
+          "rewards": [
+            {
+              "item": "Gold",
+              "qty": 32245.9127
+            },
+            {
+              "item": "Erosion Fragment",
+              "qty": 128
+            }
+          ]
+        },
+        {
+          "name": "Ascension 5-3F",
+          "rewards": [
+            {
+              "item": "Gold",
+              "qty": 32568.3719
+            },
+            {
+              "item": "Erosion Fragment",
+              "qty": 128
+            }
+          ]
+        },
+        {
+          "name": "Ascension 5-4F",
+          "rewards": [
+            {
+              "item": "Gold",
+              "qty": 32894.0556
+            },
+            {
+              "item": "Erosion Fragment",
+              "qty": 128
+            }
+          ]
+        },
+        {
+          "name": "Ascension 5-5F",
+          "rewards": [
+            {
+              "item": "Gold",
+              "qty": 33222.9961
+            },
+            {
+              "item": "Erosion Fragment",
+              "qty": 128
+            }
+          ]
+        },
+        {
+          "name": "Ascension 6F",
+          "rewards": [
+            {
+              "item": "Gold",
+              "qty": 33555.2261
+            },
+            {
+              "item": "Erosion Fragment",
+              "qty": 128
+            }
+          ]
+        },
+        {
+          "name": "Ascension 6-1F",
+          "rewards": [
+            {
+              "item": "Gold",
+              "qty": 33890.778399999996
+            },
+            {
+              "item": "Erosion Fragment",
+              "qty": 128
+            }
+          ]
+        },
+        {
+          "name": "Ascension 6-2F",
+          "rewards": [
+            {
+              "item": "Gold",
+              "qty": 34229.6861
+            },
+            {
+              "item": "Erosion Fragment",
+              "qty": 128
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nm",
+      "name": "NM",
+      "kind": "nm",
+      "sub": "Nightmare (Deep Abyss). Highest clear counts",
+      "difficulties": [
+        {
+          "name": "Ascension 1F",
+          "rewards": [
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 1
+            },
+            {
+              "item": "Superb Ancient Wisdom",
+              "qty": 100
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +1 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 1
+            }
+          ]
+        },
+        {
+          "name": "Ascension 2F",
+          "rewards": [
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 1
+            },
+            {
+              "item": "Superb Ancient Wisdom",
+              "qty": 100
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +1 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 1
+            }
+          ]
+        },
+        {
+          "name": "Ascension 3F",
+          "rewards": [
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 1
+            },
+            {
+              "item": "Superb Ancient Wisdom",
+              "qty": 150
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +1 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 2
+            }
+          ]
+        },
+        {
+          "name": "Ascension 3-1F",
+          "rewards": [
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 1
+            },
+            {
+              "item": "Superb Ancient Wisdom",
+              "qty": 150
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +1 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 2
+            }
+          ]
+        },
+        {
+          "name": "Ascension 3-2F",
+          "rewards": [
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 1
+            },
+            {
+              "item": "Superb Ancient Wisdom",
+              "qty": 150
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +1 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 3
+            }
+          ]
+        },
+        {
+          "name": "Ascension 3-3F",
+          "rewards": [
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 1
+            },
+            {
+              "item": "Superb Ancient Wisdom",
+              "qty": 150
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +1 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 3
+            }
+          ]
+        },
+        {
+          "name": "Ascension 3-4F",
+          "rewards": [
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 1
+            },
+            {
+              "item": "Superb Ancient Wisdom",
+              "qty": 150
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +1 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 4
+            }
+          ]
+        },
+        {
+          "name": "Ascension 3-5F",
+          "rewards": [
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 1
+            },
+            {
+              "item": "Superb Ancient Wisdom",
+              "qty": 150
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +1 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 4
+            }
+          ]
+        },
+        {
+          "name": "Ascension 3-6F",
+          "rewards": [
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 1
+            },
+            {
+              "item": "Superb Ancient Wisdom",
+              "qty": 150
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +1 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 5
+            }
+          ]
+        },
+        {
+          "name": "Ascension 3-7F",
+          "rewards": [
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 1
+            },
+            {
+              "item": "Superb Ancient Wisdom",
+              "qty": 150
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +1 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 5
+            }
+          ]
+        },
+        {
+          "name": "Ascension 3-8F",
+          "rewards": [
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 1
+            },
+            {
+              "item": "Superb Ancient Wisdom",
+              "qty": 150
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +1 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 1
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +5 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 1
+            }
+          ]
+        },
+        {
+          "name": "Ascension 4F",
+          "rewards": [
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 2
+            },
+            {
+              "item": "Superb Ancient Wisdom",
+              "qty": 165
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +1 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 1
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +5 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 1
+            }
+          ]
+        },
+        {
+          "name": "Ascension 4-1F",
+          "rewards": [
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 2
+            },
+            {
+              "item": "Superb Ancient Wisdom",
+              "qty": 165
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +1 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 2
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +5 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 1
+            }
+          ]
+        },
+        {
+          "name": "Ascension 4-2F",
+          "rewards": [
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 2
+            },
+            {
+              "item": "Superb Ancient Wisdom",
+              "qty": 165
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +1 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 2
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +5 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 1
+            }
+          ]
+        },
+        {
+          "name": "Ascension 4-3F",
+          "rewards": [
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 2
+            },
+            {
+              "item": "Superb Ancient Wisdom",
+              "qty": 165
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +1 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 3
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +5 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 1
+            }
+          ]
+        },
+        {
+          "name": "Ascension 4-4F",
+          "rewards": [
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 2
+            },
+            {
+              "item": "Superb Ancient Wisdom",
+              "qty": 165
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +1 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 3
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +5 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 1
+            }
+          ]
+        },
+        {
+          "name": "Ascension 4-5F",
+          "rewards": [
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 2
+            },
+            {
+              "item": "Superb Ancient Wisdom",
+              "qty": 165
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +1 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 4
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +5 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 1
+            }
+          ]
+        },
+        {
+          "name": "Ascension 5F",
+          "rewards": [
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 3
+            },
+            {
+              "item": "Superb Ancient Wisdom",
+              "qty": 180
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +1 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 4
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +5 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 1
+            }
+          ]
+        },
+        {
+          "name": "Ascension 5-1F",
+          "rewards": [
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 3
+            },
+            {
+              "item": "Superb Ancient Wisdom",
+              "qty": 180
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +1 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 5
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +5 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 1
+            }
+          ]
+        },
+        {
+          "name": "Ascension 5-2F",
+          "rewards": [
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 3
+            },
+            {
+              "item": "Superb Ancient Wisdom",
+              "qty": 180
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +1 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 5
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +5 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 1
+            }
+          ]
+        },
+        {
+          "name": "Ascension 5-3F",
+          "rewards": [
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 3
+            },
+            {
+              "item": "Superb Ancient Wisdom",
+              "qty": 180
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +1 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 1
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +5 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 2
+            }
+          ]
+        },
+        {
+          "name": "Ascension 5-4F",
+          "rewards": [
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 3
+            },
+            {
+              "item": "Superb Ancient Wisdom",
+              "qty": 180
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +1 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 1
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +5 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 2
+            }
+          ]
+        },
+        {
+          "name": "Ascension 5-5F",
+          "rewards": [
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 3
+            },
+            {
+              "item": "Superb Ancient Wisdom",
+              "qty": 180
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +1 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 2
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +5 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 2
+            }
+          ]
+        },
+        {
+          "name": "Ascension 6F",
+          "rewards": [
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 4
+            },
+            {
+              "item": "Superb Ancient Wisdom",
+              "qty": 200
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +1 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 2
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +5 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 2
+            }
+          ]
+        },
+        {
+          "name": "Ascension 6-1F",
+          "rewards": [
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 4
+            },
+            {
+              "item": "Superb Ancient Wisdom",
+              "qty": 200
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +1 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 3
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +5 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 2
+            }
+          ]
+        },
+        {
+          "name": "Ascension 6-2F",
+          "rewards": [
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 4
+            },
+            {
+              "item": "Superb Ancient Wisdom",
+              "qty": 200
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +1 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 3
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +5 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 2
+            }
+          ]
+        },
+        {
+          "name": "Dimension 1F",
+          "rewards": [
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 4
+            },
+            {
+              "item": "Superb Ancient Wisdom",
+              "qty": 250
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +1 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 4
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +5 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 2
+            }
+          ]
+        },
+        {
+          "name": "Dimension 2F",
+          "rewards": [
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 4
+            },
+            {
+              "item": "Superb Ancient Wisdom",
+              "qty": 250
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +1 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 4
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +5 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 2
+            }
+          ]
+        },
+        {
+          "name": "Dimension 3F",
+          "rewards": [
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 4
+            },
+            {
+              "item": "Superb Ancient Wisdom",
+              "qty": 250
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +1 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 5
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +5 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 2
+            }
+          ]
+        },
+        {
+          "name": "Dimension 4F",
+          "rewards": [
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 5
+            },
+            {
+              "item": "Superb Ancient Wisdom",
+              "qty": 250
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +1 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 5
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +5 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 2
+            }
+          ]
+        },
+        {
+          "name": "Dimension 5F",
+          "rewards": [
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 5
+            },
+            {
+              "item": "Superb Ancient Wisdom",
+              "qty": 250
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +1 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 1
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +5 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 3
+            }
+          ]
+        },
+        {
+          "name": "Dimension 6F",
+          "rewards": [
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 5
+            },
+            {
+              "item": "Superb Ancient Wisdom",
+              "qty": 250
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +1 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 1
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +5 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 3
+            }
+          ]
+        },
+        {
+          "name": "Dimension 7F",
+          "rewards": [
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 5
+            },
+            {
+              "item": "Superb Ancient Wisdom",
+              "qty": 250
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +1 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 2
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +5 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 3
+            }
+          ]
+        },
+        {
+          "name": "Dimension 8F",
+          "rewards": [
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 5
+            },
+            {
+              "item": "Superb Ancient Wisdom",
+              "qty": 250
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +1 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 2
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +5 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 3
+            }
+          ]
+        },
+        {
+          "name": "Dimension 9F",
+          "rewards": [
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 5
+            },
+            {
+              "item": "Superb Ancient Wisdom",
+              "qty": 250
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +1 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 3
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +5 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 3
+            }
+          ]
+        },
+        {
+          "name": "Dimension 10F",
+          "rewards": [
+            {
+              "item": "Shiny Hero Coin",
+              "qty": 5
+            },
+            {
+              "item": "Superb Ancient Wisdom",
+              "qty": 250
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +1 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 3
+            },
+            {
+              "item": "Heroic Lunar Eclipse Dragon Jade +5 Enhancement Hammer (+0 to +14) (Untradable)",
+              "qty": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rcr",
+      "name": "RCR",
+      "kind": "diff",
+      "sub": "Royal Castle Ruins EX Nest",
+      "difficulties": [
+        {
+          "name": "Ascension 3F",
+          "rewards": [
+            {
+              "item": "Destroyed Ruins Fragment",
+              "qty": 5
+            }
+          ]
+        },
+        {
+          "name": "Ascension 3-1F",
+          "rewards": [
+            {
+              "item": "Destroyed Ruins Fragment",
+              "qty": 6
+            }
+          ]
+        },
+        {
+          "name": "Ascension 3-2F",
+          "rewards": [
+            {
+              "item": "Destroyed Ruins Fragment",
+              "qty": 7
+            }
+          ]
+        },
+        {
+          "name": "Ascension 3-3F",
+          "rewards": [
+            {
+              "item": "Destroyed Ruins Fragment",
+              "qty": 8
+            }
+          ]
+        },
+        {
+          "name": "Ascension 3-4F",
+          "rewards": [
+            {
+              "item": "Destroyed Ruins Fragment",
+              "qty": 9
+            }
+          ]
+        },
+        {
+          "name": "Ascension 3-5F",
+          "rewards": [
+            {
+              "item": "Destroyed Ruins Fragment",
+              "qty": 10
+            }
+          ]
+        },
+        {
+          "name": "Ascension 3-6F",
+          "rewards": [
+            {
+              "item": "Destroyed Ruins Fragment",
+              "qty": 11
+            }
+          ]
+        },
+        {
+          "name": "Ascension 3-7F",
+          "rewards": [
+            {
+              "item": "Destroyed Ruins Fragment",
+              "qty": 12
+            }
+          ]
+        },
+        {
+          "name": "Ascension 3-8F",
+          "rewards": [
+            {
+              "item": "Destroyed Ruins Fragment",
+              "qty": 13
+            }
+          ]
+        },
+        {
+          "name": "Ascension 4F",
+          "rewards": [
+            {
+              "item": "Destroyed Ruins Fragment",
+              "qty": 15
+            },
+            {
+              "item": "Incomplete Royal Castle Heraldry",
+              "qty": 1
+            }
+          ]
+        },
+        {
+          "name": "Ascension 4-1F",
+          "rewards": [
+            {
+              "item": "Destroyed Ruins Fragment",
+              "qty": 16
+            },
+            {
+              "item": "Incomplete Royal Castle Heraldry",
+              "qty": 1
+            }
+          ]
+        },
+        {
+          "name": "Ascension 4-2F",
+          "rewards": [
+            {
+              "item": "Destroyed Ruins Fragment",
+              "qty": 17
+            },
+            {
+              "item": "Incomplete Royal Castle Heraldry",
+              "qty": 1
+            }
+          ]
+        },
+        {
+          "name": "Ascension 4-3F",
+          "rewards": [
+            {
+              "item": "Destroyed Ruins Fragment",
+              "qty": 18
+            },
+            {
+              "item": "Incomplete Royal Castle Heraldry",
+              "qty": 1
+            }
+          ]
+        },
+        {
+          "name": "Ascension 4-4F",
+          "rewards": [
+            {
+              "item": "Destroyed Ruins Fragment",
+              "qty": 19
+            },
+            {
+              "item": "Incomplete Royal Castle Heraldry",
+              "qty": 1
+            }
+          ]
+        },
+        {
+          "name": "Ascension 4-5F",
+          "rewards": [
+            {
+              "item": "Destroyed Ruins Fragment",
+              "qty": 20
+            },
+            {
+              "item": "Incomplete Royal Castle Heraldry",
+              "qty": 1
+            }
+          ]
+        },
+        {
+          "name": "Ascension 5F",
+          "rewards": [
+            {
+              "item": "Ruins Fragment",
+              "qty": 10
+            }
+          ]
+        },
+        {
+          "name": "Ascension 5-1F",
+          "rewards": [
+            {
+              "item": "Ruins Fragment",
+              "qty": 10
+            }
+          ]
+        },
+        {
+          "name": "Ascension 5-2F",
+          "rewards": [
+            {
+              "item": "Ruins Fragment",
+              "qty": 13
+            }
+          ]
+        },
+        {
+          "name": "Ascension 5-3F",
+          "rewards": [
+            {
+              "item": "Ruins Fragment",
+              "qty": 13
+            }
+          ]
+        },
+        {
+          "name": "Ascension 5-4F",
+          "rewards": [
+            {
+              "item": "Ruins Fragment",
+              "qty": 14
+            }
+          ]
+        },
+        {
+          "name": "Ascension 5-5F",
+          "rewards": [
+            {
+              "item": "Ruins Fragment",
+              "qty": 15
+            }
+          ]
+        },
+        {
+          "name": "Ascension 6F",
+          "rewards": [
+            {
+              "item": "Ruins Fragment",
+              "qty": 16
+            }
+          ]
+        },
+        {
+          "name": "Ascension 6-1F",
+          "rewards": [
+            {
+              "item": "Ruins Fragment",
+              "qty": 17
+            }
+          ]
+        },
+        {
+          "name": "Ascension 6-2F",
+          "rewards": [
+            {
+              "item": "Ruins Fragment",
+              "qty": 18
+            }
+          ]
+        },
+        {
+          "name": "Dimension 1F",
+          "rewards": [
+            {
+              "item": "Ruins Fragment",
+              "qty": 19
+            },
+            {
+              "item": "Royal Castle Heraldry",
+              "qty": 1,
+              "qtyText": "1~2"
+            }
+          ]
+        },
+        {
+          "name": "Dimension 2F",
+          "rewards": [
+            {
+              "item": "Ruins Fragment",
+              "qty": 20
+            },
+            {
+              "item": "Royal Castle Heraldry",
+              "qty": 1,
+              "qtyText": "1~2"
+            }
+          ]
+        },
+        {
+          "name": "Dimension 3F",
+          "rewards": [
+            {
+              "item": "Ruins Fragment",
+              "qty": 25
+            },
+            {
+              "item": "Royal Castle Heraldry",
+              "qty": 1,
+              "qtyText": "1~2"
+            }
+          ]
+        },
+        {
+          "name": "Dimension 4F",
+          "rewards": [
+            {
+              "item": "Refined Ruins Fragment",
+              "qty": 10
+            },
+            {
+              "item": "Royal Castle Heraldry",
+              "qty": 1,
+              "qtyText": "1~2"
+            }
+          ]
+        },
+        {
+          "name": "Dimension 5F",
+          "rewards": [
+            {
+              "item": "Refined Ruins Fragment",
+              "qty": 12
+            },
+            {
+              "item": "Royal Castle Heraldry",
+              "qty": 1,
+              "qtyText": "1~2"
+            }
+          ]
+        },
+        {
+          "name": "Dimension 6F",
+          "rewards": [
+            {
+              "item": "Refined Ruins Fragment",
+              "qty": 14
+            },
+            {
+              "item": "Royal Castle Heraldry",
+              "qty": 1,
+              "qtyText": "1~2"
+            }
+          ]
+        },
+        {
+          "name": "Dimension 7F",
+          "rewards": [
+            {
+              "item": "Refined Ruins Fragment",
+              "qty": 15
+            },
+            {
+              "item": "Royal Castle Heraldry",
+              "qty": 1,
+              "qtyText": "1~2"
+            }
+          ]
+        },
+        {
+          "name": "Dimension 8F",
+          "rewards": [
+            {
+              "item": "Refined Ruins Fragment",
+              "qty": 21
+            },
+            {
+              "item": "Royal Castle Heraldry",
+              "qty": 0,
+              "qtyText": "1~2 (probability)"
+            }
+          ]
+        },
+        {
+          "name": "Dimension 9F",
+          "rewards": [
+            {
+              "item": "Refined Ruins Fragment",
+              "qty": 27
+            },
+            {
+              "item": "Royal Castle Heraldry",
+              "qty": 0,
+              "qtyText": "1~2 (probability)"
+            }
+          ]
+        },
+        {
+          "name": "Dimension 10F",
+          "rewards": [
+            {
+              "item": "Refined Ruins Fragment",
+              "qty": 32
+            },
+            {
+              "item": "Royal Castle Heraldry",
+              "qty": 0,
+              "qtyText": "1~2 (probability)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cube",
+      "name": "Cube Awaken",
+      "kind": "diff",
+      "sub": "Difficulty",
+      "difficulties": [
+        {
+          "name": "Ascension 1F",
+          "rewards": []
+        },
+        {
+          "name": "Ascension 2F",
+          "rewards": []
+        },
+        {
+          "name": "Ascension 3F",
+          "rewards": []
+        },
+        {
+          "name": "Ascension 3-1F",
+          "rewards": []
+        },
+        {
+          "name": "Ascension 3-2F",
+          "rewards": []
+        },
+        {
+          "name": "Ascension 3-3F",
+          "rewards": []
+        },
+        {
+          "name": "Ascension 3-4F",
+          "rewards": []
+        },
+        {
+          "name": "Ascension 3-5F",
+          "rewards": []
+        },
+        {
+          "name": "Ascension 3-6F",
+          "rewards": []
+        },
+        {
+          "name": "Ascension 3-7F",
+          "rewards": []
+        },
+        {
+          "name": "Ascension 3-8F",
+          "rewards": []
+        },
+        {
+          "name": "Ascension 4F",
+          "rewards": []
+        },
+        {
+          "name": "Ascension 4-1F",
+          "rewards": []
+        },
+        {
+          "name": "Ascension 4-2F",
+          "rewards": []
+        },
+        {
+          "name": "Ascension 4-3F",
+          "rewards": []
+        },
+        {
+          "name": "Ascension 4-4F",
+          "rewards": []
+        },
+        {
+          "name": "Ascension 4-5F",
+          "rewards": []
+        },
+        {
+          "name": "Ascension 5F",
+          "rewards": []
+        },
+        {
+          "name": "Ascension 5-1F",
+          "rewards": []
+        },
+        {
+          "name": "Ascension 5-2F",
+          "rewards": []
+        },
+        {
+          "name": "Ascension 5-3F",
+          "rewards": []
+        },
+        {
+          "name": "Ascension 5-4F",
+          "rewards": []
+        },
+        {
+          "name": "Ascension 5-5F",
+          "rewards": []
+        },
+        {
+          "name": "Ascension 6F",
+          "rewards": []
+        },
+        {
+          "name": "Ascension 6-1F",
+          "rewards": []
+        },
+        {
+          "name": "Ascension 6-2F",
+          "rewards": []
+        },
+        {
+          "name": "Dimension 1F",
+          "rewards": []
+        },
+        {
+          "name": "Dimension 2F",
+          "rewards": []
+        },
+        {
+          "name": "Dimension 3F",
+          "rewards": []
+        },
+        {
+          "name": "Dimension 4F",
+          "rewards": []
+        },
+        {
+          "name": "Dimension 5F",
+          "rewards": []
+        },
+        {
+          "name": "Dimension 6F",
+          "rewards": []
+        },
+        {
+          "name": "Dimension 7F",
+          "rewards": []
+        },
+        {
+          "name": "Dimension 8F",
+          "rewards": []
+        },
+        {
+          "name": "Dimension 9F",
+          "rewards": []
+        },
+        {
+          "name": "Dimension 10F",
+          "rewards": []
+        }
+      ]
+    },
+    {
+      "id": "root",
+      "name": "Decaying Root",
+      "kind": "diff",
+      "sub": "Decaying Root Cave chest selection (DNSEA Apr 2026)",
+      "difficulties": [
+        {
+          "name": "Golden · Ascension 1F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 3,
+              "qtyText": "3 - 9"
+            }
+          ]
+        },
+        {
+          "name": "Golden · Ascension 2F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 4,
+              "qtyText": "4 - 12"
+            }
+          ]
+        },
+        {
+          "name": "Golden · Ascension 3F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 5,
+              "qtyText": "5 - 15"
+            }
+          ]
+        },
+        {
+          "name": "Golden · Ascension 3-1F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 5,
+              "qtyText": "5 - 15"
+            }
+          ]
+        },
+        {
+          "name": "Golden · Ascension 3-2F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 5,
+              "qtyText": "5 - 15"
+            }
+          ]
+        },
+        {
+          "name": "Golden · Ascension 3-3F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 5,
+              "qtyText": "5 - 15"
+            }
+          ]
+        },
+        {
+          "name": "Golden · Ascension 3-4F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 5,
+              "qtyText": "5 - 15"
+            }
+          ]
+        },
+        {
+          "name": "Golden · Ascension 3-5F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 5,
+              "qtyText": "5 - 15"
+            }
+          ]
+        },
+        {
+          "name": "Golden · Ascension 3-6F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 5,
+              "qtyText": "5 - 15"
+            }
+          ]
+        },
+        {
+          "name": "Golden · Ascension 3-7F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 5,
+              "qtyText": "5 - 15"
+            }
+          ]
+        },
+        {
+          "name": "Golden · Ascension 3-8F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 5,
+              "qtyText": "5 - 15"
+            }
+          ]
+        },
+        {
+          "name": "Golden · Ascension 4F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 6,
+              "qtyText": "6 - 18"
+            }
+          ]
+        },
+        {
+          "name": "Golden · Ascension 4-1F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 6,
+              "qtyText": "6 - 18"
+            }
+          ]
+        },
+        {
+          "name": "Golden · Ascension 4-2F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 6,
+              "qtyText": "6 - 18"
+            }
+          ]
+        },
+        {
+          "name": "Golden · Ascension 4-3F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 6,
+              "qtyText": "6 - 18"
+            }
+          ]
+        },
+        {
+          "name": "Golden · Ascension 4-4F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 6,
+              "qtyText": "6 - 18"
+            }
+          ]
+        },
+        {
+          "name": "Golden · Ascension 4-5F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 6,
+              "qtyText": "6 - 18"
+            }
+          ]
+        },
+        {
+          "name": "Golden · Ascension 5F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 8,
+              "qtyText": "8 - 24"
+            },
+            {
+              "item": "Twisted Root",
+              "qty": 2
+            },
+            {
+              "item": "Contaminated Will",
+              "qty": 0,
+              "qtyText": "1 (probability)"
+            }
+          ]
+        },
+        {
+          "name": "Golden · Ascension 5-1F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 8,
+              "qtyText": "8 - 24"
+            },
+            {
+              "item": "Twisted Root",
+              "qty": 2
+            },
+            {
+              "item": "Contaminated Will",
+              "qty": 0,
+              "qtyText": "1 (probability)"
+            }
+          ]
+        },
+        {
+          "name": "Golden · Ascension 5-2F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 8,
+              "qtyText": "8 - 24"
+            },
+            {
+              "item": "Twisted Root",
+              "qty": 2
+            },
+            {
+              "item": "Contaminated Will",
+              "qty": 0,
+              "qtyText": "1 (probability)"
+            }
+          ]
+        },
+        {
+          "name": "Golden · Ascension 5-3F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 8,
+              "qtyText": "8 - 24"
+            },
+            {
+              "item": "Twisted Root",
+              "qty": 2
+            },
+            {
+              "item": "Contaminated Will",
+              "qty": 0,
+              "qtyText": "1 (probability)"
+            }
+          ]
+        },
+        {
+          "name": "Golden · Ascension 5-4F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 8,
+              "qtyText": "8 - 24"
+            },
+            {
+              "item": "Twisted Root",
+              "qty": 2
+            },
+            {
+              "item": "Contaminated Will",
+              "qty": 0,
+              "qtyText": "1 (probability)"
+            }
+          ]
+        },
+        {
+          "name": "Golden · Ascension 5-5F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 8,
+              "qtyText": "8 - 24"
+            },
+            {
+              "item": "Twisted Root",
+              "qty": 2
+            },
+            {
+              "item": "Contaminated Will",
+              "qty": 0,
+              "qtyText": "1 (probability)"
+            }
+          ]
+        },
+        {
+          "name": "Golden · Ascension 6F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 9,
+              "qtyText": "9 - 27"
+            },
+            {
+              "item": "Twisted Root",
+              "qty": 3
+            },
+            {
+              "item": "Contaminated Will",
+              "qty": 0,
+              "qtyText": "1 (probability)"
+            }
+          ]
+        },
+        {
+          "name": "Golden · Ascension 6-1F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 9,
+              "qtyText": "9 - 27"
+            },
+            {
+              "item": "Twisted Root",
+              "qty": 3
+            },
+            {
+              "item": "Contaminated Will",
+              "qty": 0,
+              "qtyText": "1 (probability)"
+            }
+          ]
+        },
+        {
+          "name": "Golden · Ascension 6-2F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 9,
+              "qtyText": "9 - 27"
+            },
+            {
+              "item": "Twisted Root",
+              "qty": 3
+            },
+            {
+              "item": "Contaminated Will",
+              "qty": 0,
+              "qtyText": "1 (probability)"
+            }
+          ]
+        },
+        {
+          "name": "Golden · Dimension 1F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 10,
+              "qtyText": "10 - 30"
+            },
+            {
+              "item": "Twisted Root",
+              "qty": 3
+            },
+            {
+              "item": "Contaminated Will",
+              "qty": 0,
+              "qtyText": "1 (probability)"
+            }
+          ]
+        },
+        {
+          "name": "Golden · Dimension 2F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 12,
+              "qtyText": "12 - 36"
+            },
+            {
+              "item": "Twisted Root",
+              "qty": 4
+            },
+            {
+              "item": "Contaminated Will",
+              "qty": 0,
+              "qtyText": "1 (probability)"
+            }
+          ]
+        },
+        {
+          "name": "Golden · Dimension 3F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 13,
+              "qtyText": "13 - 39"
+            },
+            {
+              "item": "Twisted Root",
+              "qty": 4
+            },
+            {
+              "item": "Contaminated Will",
+              "qty": 0,
+              "qtyText": "1 (probability)"
+            }
+          ]
+        },
+        {
+          "name": "Golden · Dimension 4F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 15,
+              "qtyText": "15 - 45"
+            },
+            {
+              "item": "Twisted Root",
+              "qty": 5
+            },
+            {
+              "item": "Contaminated Will",
+              "qty": 0,
+              "qtyText": "1 (probability)"
+            }
+          ]
+        },
+        {
+          "name": "Silver · Ascension 1F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 1
+            }
+          ]
+        },
+        {
+          "name": "Silver · Ascension 2F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 1
+            }
+          ]
+        },
+        {
+          "name": "Silver · Ascension 3F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 2
+            }
+          ]
+        },
+        {
+          "name": "Silver · Ascension 3-1F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 2
+            }
+          ]
+        },
+        {
+          "name": "Silver · Ascension 3-2F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 2
+            }
+          ]
+        },
+        {
+          "name": "Silver · Ascension 3-3F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 2
+            }
+          ]
+        },
+        {
+          "name": "Silver · Ascension 3-4F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 2
+            }
+          ]
+        },
+        {
+          "name": "Silver · Ascension 3-5F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 2
+            }
+          ]
+        },
+        {
+          "name": "Silver · Ascension 3-6F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 2
+            }
+          ]
+        },
+        {
+          "name": "Silver · Ascension 3-7F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 2
+            }
+          ]
+        },
+        {
+          "name": "Silver · Ascension 3-8F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 2
+            }
+          ]
+        },
+        {
+          "name": "Silver · Ascension 4F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 2
+            }
+          ]
+        },
+        {
+          "name": "Silver · Ascension 4-1F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 2
+            }
+          ]
+        },
+        {
+          "name": "Silver · Ascension 4-2F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 2
+            }
+          ]
+        },
+        {
+          "name": "Silver · Ascension 4-3F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 2
+            }
+          ]
+        },
+        {
+          "name": "Silver · Ascension 4-4F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 2
+            }
+          ]
+        },
+        {
+          "name": "Silver · Ascension 4-5F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 2
+            }
+          ]
+        },
+        {
+          "name": "Silver · Ascension 5F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 2,
+              "qtyText": "2 - 7"
+            }
+          ]
+        },
+        {
+          "name": "Silver · Ascension 5-1F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 2,
+              "qtyText": "2 - 7"
+            }
+          ]
+        },
+        {
+          "name": "Silver · Ascension 5-2F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 2,
+              "qtyText": "2 - 7"
+            }
+          ]
+        },
+        {
+          "name": "Silver · Ascension 5-3F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 2,
+              "qtyText": "2 - 7"
+            }
+          ]
+        },
+        {
+          "name": "Silver · Ascension 5-4F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 2,
+              "qtyText": "2 - 7"
+            }
+          ]
+        },
+        {
+          "name": "Silver · Ascension 5-5F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 2,
+              "qtyText": "2 - 7"
+            }
+          ]
+        },
+        {
+          "name": "Silver · Ascension 6F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 3,
+              "qtyText": "3 - 8"
+            }
+          ]
+        },
+        {
+          "name": "Silver · Ascension 6-1F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 3,
+              "qtyText": "3 - 8"
+            }
+          ]
+        },
+        {
+          "name": "Silver · Ascension 6-2F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 3,
+              "qtyText": "3 - 8"
+            }
+          ]
+        },
+        {
+          "name": "Silver · Dimension 1F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 3,
+              "qtyText": "3 - 9"
+            }
+          ]
+        },
+        {
+          "name": "Silver · Dimension 2F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 4,
+              "qtyText": "4 - 11"
+            }
+          ]
+        },
+        {
+          "name": "Silver · Dimension 3F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 4,
+              "qtyText": "4 - 12"
+            }
+          ]
+        },
+        {
+          "name": "Silver · Dimension 4F",
+          "rewards": [
+            {
+              "item": "Deeply Rooted Fragment of Longing",
+              "qty": 5,
+              "qtyText": "5 - 14"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pfdl",
+      "name": "Paradox FrDN L",
+      "kind": "done",
+      "sub": "Paradox Frozen Dragon Nest, Light",
+      "difficulties": [
+        {
+          "name": "Done",
+          "rewards": [
+            {
+              "item": "Awakened Mana Egg",
+              "qty": 200,
+              "qtyText": "200 - 1000"
+            },
+            {
+              "item": "Paradox Vitality Recovery Potion",
+              "qty": 20
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pfdn",
+      "name": "Paradox FrDN N",
+      "kind": "done",
+      "sub": "Paradox Frozen Dragon Nest, Normal",
+      "difficulties": [
+        {
+          "name": "Done",
+          "rewards": [
+            {
+              "item": "Awakened Mana Egg",
+              "qty": 400,
+              "qtyText": "400 - 2000"
+            },
+            {
+              "item": "Afterimage Record",
+              "qty": 45
+            },
+            {
+              "item": "Paradox Vitality Recovery Potion",
+              "qty": 20
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "godnz",
+      "name": "GoDNZ",
+      "kind": "done",
+      "sub": "",
+      "difficulties": [
+        {
+          "name": "Done",
+          "rewards": []
+        }
+      ]
+    },
+    {
+      "id": "godn",
+      "name": "GoDN",
+      "kind": "done",
+      "sub": "",
+      "difficulties": [
+        {
+          "name": "Done",
+          "rewards": []
+        }
+      ]
+    },
+    {
+      "id": "godnhc",
+      "name": "GoDN HC",
+      "kind": "done",
+      "sub": "",
+      "difficulties": [
+        {
+          "name": "Done",
+          "rewards": []
+        }
+      ]
+    },
+    {
+      "id": "bonel",
+      "name": "Bone L",
+      "kind": "done",
+      "sub": "",
+      "difficulties": [
+        {
+          "name": "Done",
+          "rewards": []
+        }
+      ]
+    },
+    {
+      "id": "bonen",
+      "name": "Bone N",
+      "kind": "done",
+      "sub": "",
+      "difficulties": [
+        {
+          "name": "Done",
+          "rewards": []
+        }
+      ]
+    },
+    {
+      "id": "bonehc",
+      "name": "Bone HC",
+      "kind": "done",
+      "sub": "",
+      "difficulties": [
+        {
+          "name": "Done",
+          "rewards": []
+        }
+      ]
+    },
+    {
+      "id": "bdnl",
+      "name": "BDN L",
+      "kind": "done",
+      "sub": "",
+      "difficulties": [
+        {
+          "name": "Done",
+          "rewards": []
+        }
+      ]
+    },
+    {
+      "id": "bdnhc",
+      "name": "BDN HC",
+      "kind": "done",
+      "sub": "",
+      "difficulties": [
+        {
+          "name": "Done",
+          "rewards": []
+        }
+      ]
+    },
+    {
+      "id": "ddn",
+      "name": "DDN",
+      "kind": "done",
+      "sub": "",
+      "difficulties": [
+        {
+          "name": "Done",
+          "rewards": []
+        }
+      ]
+    },
+    {
+      "id": "gudnhc",
+      "name": "GUDN HC",
+      "kind": "done",
+      "sub": "",
+      "difficulties": [
+        {
+          "name": "Done",
+          "rewards": []
+        }
+      ]
+    }
+  ]
+}
