@@ -6,10 +6,10 @@
 .form-row{display:flex;gap:8px;flex-wrap:wrap;align-items:flex-end}
 .form-row .field{flex:1 1 150px}
 .editor{display:grid;grid-template-columns:minmax(220px,300px) minmax(0,1fr);gap:12px;align-items:start}
-.tasklist{display:grid;gap:4px;padding:8px}
+.tasklist{display:grid;gap:4px;padding:8px;grid-template-columns:minmax(0,1fr)}
 .xfer{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
 .xfer .sub b{color:var(--ink);font-weight:600;margin-right:4px}
-.trow{display:flex;align-items:center;gap:8px;border-radius:10px;padding:8px 10px;border:1px solid transparent;cursor:pointer;background:none;text-align:left;width:100%}
+.trow{min-width:0;display:flex;align-items:center;gap:8px;border-radius:10px;padding:8px 10px;border:1px solid transparent;cursor:pointer;background:none;text-align:left;width:100%}
 .trow:hover{background:var(--surface-2)}
 .trow[aria-current="true"]{background:var(--surface-2);border-color:var(--line-2)}
 .trow .n{flex:1;min-width:0}
